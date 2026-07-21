@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Royal Affair – Designer Suits</title>
+  <meta name="description" content="Secure checkout. Fill in billing details, select shipping options, apply discount codes, and complete your purchase.">
+  
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    Complimentary Shipping Across India on Orders Above ₹10,000 | Custom Tailoring Available
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="index.html" class="logo">
+        Royal Affair
+        <span>Designer Suits</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop Collection</a>
+        <a href="about.html" class="nav-link">Heritage</a>
+        <a href="faq.html" class="nav-link">FAQs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="account.html" class="nav-link">Account</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <a href="account.html" class="action-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+
+        <a href="wishlist.html" class="action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge-count wishlist-badge">0</span>
+        </a>
+
+        <a href="cart.html" class="action-btn cart-trigger" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-count cart-badge">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header / Breadcrumb -->
+  <div style="background-color: var(--color-white); border-bottom: 1px solid var(--color-gray-light);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"></span>
+        <a href="cart.html">Cart</a>
+        <span class="separator"></span>
+        <span class="current">Checkout</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Grid -->
+  <section class="section-padding container">
+    <div class="section-header">
+      <span class="subtitle">Secure Purchase</span>
+      <h2>Checkout Details</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--spacing-xl); margin-top: var(--spacing-lg);">
+      
+      <!-- Left Column: Checkout Forms -->
+      <div>
+        <!-- Step Progress Indicator -->
+        <div class="checkout-progress-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1.5px solid var(--color-gray-light); padding-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="progress-step active" id="prog-step-1" style="font-weight: 600; color: var(--color-maroon); font-size: var(--font-sm); text-transform: uppercase; letter-spacing: 0.05em;">1. Contact</div>
+          <div class="progress-step" id="prog-step-2" style="font-weight: 500; color: var(--color-gray); font-size: var(--font-sm); text-transform: uppercase; letter-spacing: 0.05em;">2. Shipping</div>
+          <div class="progress-step" id="prog-step-3" style="font-weight: 500; color: var(--color-gray); font-size: var(--font-sm); text-transform: uppercase; letter-spacing: 0.05em;">3. Delivery</div>
+          <div class="progress-step" id="prog-step-4" style="font-weight: 500; color: var(--color-gray); font-size: var(--font-sm); text-transform: uppercase; letter-spacing: 0.05em;">4. Payment</div>
+          <div class="progress-step" id="prog-step-5" style="font-weight: 500; color: var(--color-gray); font-size: var(--font-sm); text-transform: uppercase; letter-spacing: 0.05em;">5. Review</div>
+        </div>
+
+        <form id="checkout-form" onsubmit="event.preventDefault();">
+          
+          <!-- STEP 1: Contact details -->
+          <div class="checkout-step-pane" id="checkout-step-pane-1" style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem; display: block; text-align: left;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Contact Information
+            </h3>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="contact-name">Full Name</label>
+              <input type="text" id="contact-name" name="contact_name" class="form-input" required placeholder="e.g. Aishwarya Rai">
+              <span class="form-error-msg" id="err-contact-name" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" name="contact_email" class="form-input" required placeholder="e.g. aishwarya@example.com">
+              <span class="form-error-msg" id="err-contact-email" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-phone">Phone Number (10 Digits)</label>
+              <input type="tel" id="contact-phone" name="contact_phone" class="form-input" required placeholder="e.g. 9876543210" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              <span class="form-error-msg" id="err-contact-phone" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+            </div>
+          </div>
+
+          <!-- STEP 2: Shipping address -->
+          <div class="checkout-step-pane" id="checkout-step-pane-2" style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem; display: none; text-align: left;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Shipping Address
+            </h3>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="shipping-fullname">Recipient Full Name</label>
+              <input type="text" id="shipping-fullname" name="shipping_fullname" class="form-input" required placeholder="e.g. Aishwarya Rai">
+              <span class="form-error-msg" id="err-shipping-fullname" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="shipping-addr1">Address Line 1</label>
+              <input type="text" id="shipping-addr1" name="shipping_addr1" class="form-input" required placeholder="House No, Apartment, Street name">
+              <span class="form-error-msg" id="err-shipping-addr1" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="shipping-addr2">Address Line 2 (Optional)</label>
+              <input type="text" id="shipping-addr2" name="shipping_addr2" class="form-input" placeholder="Apartment, suite, unit etc.">
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="shipping-landmark">Landmark (Optional)</label>
+              <input type="text" id="shipping-landmark" name="shipping_landmark" class="form-input" placeholder="e.g. Near Heritage Tower">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label" for="shipping-city">City</label>
+                <input type="text" id="shipping-city" name="shipping_city" class="form-input" required placeholder="e.g. Meerut">
+                <span class="form-error-msg" id="err-shipping-city" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="shipping-state">State</label>
+                <input type="text" id="shipping-state" name="shipping_state" class="form-input" required placeholder="e.g. Uttar Pradesh">
+                <span class="form-error-msg" id="err-shipping-state" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label" for="shipping-pin">PIN Code (6 Digits)</label>
+                <input type="text" id="shipping-pin" name="shipping_pin" class="form-input" required placeholder="6 digits" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <span class="form-error-msg" id="err-shipping-pin" style="color: var(--color-error); font-size: 0.75rem; display: none; margin-top: 0.25rem; font-weight: 500;"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="shipping-country">Country</label>
+                <input type="text" id="shipping-country" name="shipping_country" class="form-input" value="India" readonly style="background-color: var(--color-beige); color: var(--color-charcoal-light);">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: block; margin-bottom: 0.5rem;">Address Type</label>
+              <div style="display: flex; gap: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                  <input type="radio" name="shipping_type" value="Home" checked style="accent-color: var(--color-maroon);"> Home (Delivery all day)
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                  <input type="radio" name="shipping_type" value="Office" style="accent-color: var(--color-maroon);"> Office (Delivery 9 AM - 6 PM)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Delivery Method -->
+          <div class="checkout-step-pane" id="checkout-step-pane-3" style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem; display: none; text-align: left;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Delivery Method
+            </h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1.25rem; border: 1.5px solid var(--color-maroon); border-radius: var(--border-radius-xs);" id="deliv-method-label-standard">
+                <input type="radio" name="delivery_method" value="standard" checked onclick="selectDeliveryOption('standard')" style="accent-color: var(--color-maroon);">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong style="display: block; font-size: 0.95rem;">Standard Shipping</strong>
+                    <span id="standard-price-label" style="font-weight: 700; color: var(--color-maroon);">FREE</span>
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--color-gray); display: block; margin-top: 0.25rem;">Expected Delivery: 4-6 business days. Complimentary on order values above ₹1,999.</span>
+                </div>
+              </label>
+
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1.25rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);" id="deliv-method-label-express">
+                <input type="radio" name="delivery_method" value="express" onclick="selectDeliveryOption('express')" style="accent-color: var(--color-maroon);">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong style="display: block; font-size: 0.95rem;">Express Courier Delivery</strong>
+                    <span style="font-weight: 700; color: var(--color-maroon);">+ ₹150</span>
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--color-gray); display: block; margin-top: 0.25rem;">Expected Delivery: 2 business days. Express dispatch routing straight from Meerut atelier.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 4: Payment Method -->
+          <div class="checkout-step-pane" id="checkout-step-pane-4" style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem; display: none; text-align: left;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Payment Method
+            </h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1rem; border: 1.5px solid var(--color-maroon); border-radius: var(--border-radius-xs);" id="pay-method-label-upi">
+                <input type="radio" name="payment_option" value="UPI" checked onclick="selectPaymentOption('upi')" style="accent-color: var(--color-maroon);">
+                <div>
+                  <strong style="display: block; font-size: 0.95rem;">UPI Transfer (GPay / PhonePe / BHIM)</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-gray);">Simulate merchant QR transfer safely.</span>
+                </div>
+              </label>
+
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);" id="pay-method-label-card">
+                <input type="radio" name="payment_option" value="Card" onclick="selectPaymentOption('card')" style="accent-color: var(--color-maroon);">
+                <div>
+                  <strong style="display: block; font-size: 0.95rem;">Credit / Debit Card</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-gray);">Simulate credit card gateway entries.</span>
+                </div>
+              </label>
+
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);" id="pay-method-label-net">
+                <input type="radio" name="payment_option" value="NetBanking" onclick="selectPaymentOption('net')" style="accent-color: var(--color-maroon);">
+                <div>
+                  <strong style="display: block; font-size: 0.95rem;">Net Banking</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-gray);">Support for all major Indian banks.</span>
+                </div>
+              </label>
+
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 1rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);" id="pay-method-label-cod">
+                <input type="radio" name="payment_option" value="COD" onclick="selectPaymentOption('cod')" style="accent-color: var(--color-maroon);">
+                <div>
+                  <strong style="display: block; font-size: 0.95rem;">Cash on Delivery (COD)</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-gray);">Pay cash when product arrives. (₹100 COD fee applies)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 5: Order Review -->
+          <div class="checkout-step-pane" id="checkout-step-pane-5" style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem; display: none; text-align: left;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Review Your Order
+            </h3>
+
+            <!-- Review sections grid info -->
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div style="border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 0.75rem;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-gold-dark); margin-bottom: 0.25rem;">1. Contact Details</h4>
+                <p id="rev-contact-summary" style="font-size: 0.9rem; margin: 0; color: var(--color-charcoal-light);">-</p>
+              </div>
+
+              <div style="border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 0.75rem;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-gold-dark); margin-bottom: 0.25rem;">2. Shipping Address</h4>
+                <p id="rev-shipping-summary" style="font-size: 0.9rem; margin: 0; color: var(--color-charcoal-light);">-</p>
+              </div>
+
+              <div style="border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 0.75rem;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-gold-dark); margin-bottom: 0.25rem;">3. Delivery Method</h4>
+                <p id="rev-delivery-summary" style="font-size: 0.9rem; margin: 0; color: var(--color-charcoal-light);">-</p>
+              </div>
+
+              <div>
+                <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-gold-dark); margin-bottom: 0.25rem;">4. Payment Option</h4>
+                <p id="rev-payment-summary" style="font-size: 0.9rem; margin: 0; color: var(--color-charcoal-light);">-</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back & Forward multi-step buttons -->
+          <div style="display: flex; justify-content: space-between; margin-top: 1.5rem;">
+            <button type="button" class="btn btn-outline btn-sm" id="prev-step-btn" onclick="triggerPrevStep()" style="display: none; padding: 0.5rem 1.5rem; font-weight: 600;">&larr; Back</button>
+            <button type="button" class="btn btn-primary btn-sm" id="next-step-btn" onclick="triggerNextStep()" style="margin-left: auto; padding: 0.5rem 1.5rem;">Continue &rarr;</button>
+            <button type="button" class="btn btn-primary btn-sm" id="place-order-btn" onclick="submitMultiStepCheckout()" style="margin-left: auto; display: none; padding: 0.5rem 1.5rem; background-color: var(--color-success); border-color: var(--color-success);">Place Order &lsaquo; Demo &rsaquo;</button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Right Column: Summary Overview -->
+      <div>
+        <div style="background-color: var(--color-white); border: 1px solid var(--color-gray-light); padding: 2rem; border-radius: var(--border-radius-sm); box-shadow: var(--shadow-sm); position: sticky; top: 100px;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem; color: var(--color-maroon-dark);">Order Summary</h3>
+          
+          <!-- Summary items -->
+          <div id="checkout-summary-items" style="max-height: 250px; overflow-y: auto; margin-bottom: 1.5rem; border-bottom: 1px dashed rgba(88,17,26,0.1); padding-bottom: 1rem;">
+            <!-- Rendered by checkout.js -->
+          </div>
+
+          <!-- Checkout Prices -->
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.9rem;">
+            <span>Subtotal</span>
+            <span id="checkout-subtotal">₹0</span>
+          </div>
+
+          <div style="display: none; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--color-success);">
+            <span>Discount (10%)</span>
+            <span id="checkout-discount">- ₹0</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.9rem;">
+            <span>Shipping</span>
+            <span id="checkout-shipping">FREE</span>
+          </div>
+
+          <div style="border-top: 1px solid var(--color-gray-light); padding-top: 1rem; display: flex; justify-content: space-between; font-weight: 600; font-size: 1.25rem; margin-bottom: 2rem;">
+            <span>Total Payable</span>
+            <span id="checkout-total" style="color: var(--color-maroon);">₹0</span>
+          </div>
+
+          <!-- Coupon Input -->
+          <div style="margin-bottom: 2rem;">
+            <label class="form-label" for="checkout-promo-input" style="font-size: 0.75rem;">Coupon Code</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="checkout-promo-input" class="form-input" placeholder="e.g. ROYAL10" style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">
+              <button id="checkout-promo-btn" class="btn btn-outline btn-sm">Apply</button>
+            </div>
+            <span id="checkout-promo-msg" style="font-size: 0.75rem; display: block; margin-top: 0.35rem;"></span>
+          </div>
+
+          <!-- Trigger checkout submit from sidebar -->
+          <button type="submit" form="checkout-form" class="btn btn-primary btn-block">Place Order</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo" style="color: var(--color-gold-light); margin-bottom: 1rem;">
+            Royal Affair
+          </a>
+          <p>Handcrafting the finest Indian designer suits. Experience premium silk velvets, luxury Banarasi weaves, and intricate hand-embellished wear.</p>
+          <div class="social-icons">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5-1.5c.3-1.8 1.4-5.2 2-7.5-.2-.5-.3-1.2-.3-1.9 0-2.6 1.5-4.5 3.3-4.5.9 0 1.7.4 2 1.1.8-1.5 2.1-2.1 3.5-2.1 3.1 0 5.4 2.8 5.4 6.7 0 4.2-2.5 7.2-5.4 7.2-1 0-1.9-.5-2.2-1.1-.9 2.5-1 3.3-1.6 4.7z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="shop.html">Shop Collection</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="order-tracking.html">Track Order</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Customer Care</h3>
+          <ul class="footer-links">
+            <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Join The Royal Circle</h3>
+          <p>Subscribe to receive previews of new collections, editorial styling tips, and private sales.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed to the newsletter.'); this.reset();">
+            <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Royal Affair. All rights reserved. Elegant designer suits for the contemporary wardrobe.</p>
+        <div class="payment-methods" style="color: var(--color-gold-light); display: flex; align-items: center; gap: 0.5rem;">
+          <span>Visa | MasterCard | UPI | Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay-container">
+    <button class="search-close-btn" aria-label="Close search">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <h2 style="font-size: 2rem; color: var(--color-maroon-dark); font-family: var(--font-heading); text-align: center;">Search our Collections</h2>
+    <div class="search-box-wrapper">
+      <input type="text" placeholder="Search by velvet, silk, anarkali..." class="search-input-field">
+      <button class="search-btn-field" aria-label="Submit search">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+    <div class="search-results-preview"></div>
+  </div>
+
+  <!-- Cart Drawer Sidebar -->
+  <div class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-heading);">Your Cart</h2>
+        <button class="cart-drawer-close" aria-label="Close cart">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="cart-drawer-body">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-drawer-subtotal">
+          <span>Subtotal</span>
+          <span id="drawer-subtotal-val">₹0</span>
+        </div>
+        <div class="cart-drawer-footer-actions">
+          <a href="cart.html" class="btn btn-outline" style="margin-bottom: 0.5rem; text-align: center;">View Entire Cart</a>
+          <a href="checkout.html" class="btn btn-primary" style="text-align: center;">Checkout Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="./js/products.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/wishlist.js"></script>
+  <script src="./js/compare.js"></script>
+  <script src="./js/search.js"></script>
+  <script src="./js/validation.js"></script>
+  <script src="./js/checkout.js"></script>
+
+  <!-- Auto fill user details if logged in -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("royal_affair_user"));
+      if (user) {
+        if (document.getElementById("email")) document.getElementById("email").value = user.email || "";
+        if (document.getElementById("first_name")) document.getElementById("first_name").value = user.firstName || "";
+        if (document.getElementById("last_name")) document.getElementById("last_name").value = user.lastName || "";
+        if (document.getElementById("address")) document.getElementById("address").value = user.address || "";
+        if (document.getElementById("city")) document.getElementById("city").value = user.city || "";
+        if (document.getElementById("state")) document.getElementById("state").value = user.state || "";
+        if (document.getElementById("postal_code")) document.getElementById("postal_code").value = user.postalCode || "";
+        if (document.getElementById("phone")) document.getElementById("phone").value = user.phone || "";
+      }
+    });
+  </script>
+</body>
+</html>
+
+

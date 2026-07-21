@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order | Royal Affair – Designer Suits</title>
+  <meta name="description" content="Track your designer suit delivery status. Enter your order ID and email to view real-time tracking information.">
+  
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    Complimentary Shipping Across India on Orders Above ₹10,000 | Custom Tailoring Available
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="index.html" class="logo">
+        Royal Affair
+        <span>Designer Suits</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop Collection</a>
+        <a href="about.html" class="nav-link">Heritage</a>
+        <a href="faq.html" class="nav-link">FAQs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="account.html" class="nav-link">Account</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <a href="account.html" class="action-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+
+        <a href="wishlist.html" class="action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge-count wishlist-badge">0</span>
+        </a>
+
+        <a href="cart.html" class="action-btn cart-trigger" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-count cart-badge">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header / Breadcrumb -->
+  <div style="background-color: var(--color-white); border-bottom: 1px solid var(--color-gray-light);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"></span>
+        <span class="current">Order Tracking</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Tracking Main Content -->
+  <section class="section-padding container">
+    <div class="section-header">
+      <span class="subtitle">Track Shipment</span>
+      <h2>Order Status Tracking</h2>
+    </div>
+
+    <!-- Input Form -->
+    <div style="max-width: 500px; margin: 0 auto 3rem; background-color: var(--color-white); padding: 2.5rem 2rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); text-align: left;">
+      <form id="tracking-input-form">
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label" for="track-id">Order ID</label>
+          <input type="text" id="track-id" class="form-input" required placeholder="e.g. RA-481903">
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" for="track-contact">Billing Email or Phone Number</label>
+          <input type="text" id="track-contact" class="form-input" required placeholder="e.g. aishwarya@example.com or 9876543210">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="padding: 0.75rem; font-weight: 600;">Track Shipment</button>
+      </form>
+    </div>
+
+    <!-- Tracking Visual Display Details -->
+    <div id="tracking-result-container" style="max-width: 800px; margin: 0 auto; display: none; text-align: left;">
+      <!-- Populated via script -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo" style="color: var(--color-gold-light); margin-bottom: 1rem;">
+            Royal Affair
+          </a>
+          <p>Handcrafting the finest Indian designer suits. Experience premium silk velvets, luxury Banarasi weaves, and intricate hand-embellished wear.</p>
+          <div class="social-icons">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5-1.5c.3-1.8 1.4-5.2 2-7.5-.2-.5-.3-1.2-.3-1.9 0-2.6 1.5-4.5 3.3-4.5.9 0 1.7.4 2 1.1.8-1.5 2.1-2.1 3.5-2.1 3.1 0 5.4 2.8 5.4 6.7 0 4.2-2.5 7.2-5.4 7.2-1 0-1.9-.5-2.2-1.1-.9 2.5-1 3.3-1.6 4.7z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="shop.html">Shop Collection</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="order-tracking.html">Track Order</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Customer Care</h3>
+          <ul class="footer-links">
+            <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Join The Royal Circle</h3>
+          <p>Subscribe to receive previews of new collections, editorial styling tips, and private sales.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed to the newsletter.'); this.reset();">
+            <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Royal Affair. All rights reserved. Elegant designer suits for the contemporary wardrobe.</p>
+        <div class="payment-methods" style="color: var(--color-gold-light); display: flex; align-items: center; gap: 0.5rem;">
+          <span>Visa | MasterCard | UPI | Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay-container">
+    <button class="search-close-btn" aria-label="Close search">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <h2 style="font-size: 2rem; color: var(--color-maroon-dark); font-family: var(--font-heading); text-align: center;">Search our Collections</h2>
+    <div class="search-box-wrapper">
+      <input type="text" placeholder="Search by velvet, silk, anarkali..." class="search-input-field">
+      <button class="search-btn-field" aria-label="Submit search">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+    <div class="search-results-preview"></div>
+  </div>
+
+  <!-- Cart Drawer Sidebar -->
+  <div class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-heading);">Your Cart</h2>
+        <button class="cart-drawer-close" aria-label="Close cart">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="cart-drawer-body">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-drawer-subtotal">
+          <span>Subtotal</span>
+          <span id="drawer-subtotal-val">₹0</span>
+        </div>
+        <div class="cart-drawer-footer-actions">
+          <a href="cart.html" class="btn btn-outline" style="margin-bottom: 0.5rem; text-align: center;">View Entire Cart</a>
+          <a href="checkout.html" class="btn btn-primary" style="text-align: center;">Checkout Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="./js/products.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/wishlist.js"></script>
+  <script src="./js/compare.js"></script>
+  <script src="./js/search.js"></script>
+
+  <!-- Tracking simulation logic -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Auto seed orders if needed
+      let orders = JSON.parse(localStorage.getItem("royal_affair_orders")) || [];
+      if (orders.length === 0) {
+        // Seed order to make sure search works
+        orders = [
+          {
+            orderId: "RA-481903",
+            date: "May 12, 2026",
+            total: 15900,
+            status: "Delivered",
+            items: [{ id: 2, name: "Zoya Plum Silk Sharara Set", price: 15900, quantity: 1, size: "M", color: "Deep Plum", image: "./assets/images/sharara_plum.jpg" }],
+            shippingDetails: { name: "Aishwarya Sen", address: "Flat 4B, Regency Heights, Sector 62, Noida, Uttar Pradesh - 201301", phone: "9876543210", email: "aishwarya@example.com", deliveryMethod: "standard", paymentMethod: "UPI" }
+          }
+        ];
+        localStorage.setItem("royal_affair_orders", JSON.stringify(orders));
+      }
+
+      // Check URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("id")) {
+        const queryId = urlParams.get("id");
+        document.getElementById("track-id").value = queryId;
+        
+        // Find default profile email/phone if logged in
+        const user = JSON.parse(localStorage.getItem("royal_affair_user")) || {};
+        const contactVal = user.email || user.phone || "aishwarya@example.com";
+        document.getElementById("track-contact").value = contactVal;
+        
+        performTracking(queryId, contactVal);
+      }
+
+      // Handle Form Submit
+      const form = document.getElementById("tracking-input-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const id = document.getElementById("track-id").value.trim();
+        const contactVal = document.getElementById("track-contact").value.trim();
+        performTracking(id, contactVal);
+      });
+
+      function performTracking(orderId, contactInput) {
+        const resultDiv = document.getElementById("tracking-result-container");
+        resultDiv.style.display = "block";
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
+
+        const searchOrders = JSON.parse(localStorage.getItem("royal_affair_orders")) || [];
+        const match = searchOrders.find(ord => ord.orderId.toLowerCase() === orderId.toLowerCase());
+
+        // Validate order and verify email/phone matches
+        if (!match) {
+          showErrorState(resultDiv, orderId);
+          return;
+        }
+
+        const matchEmail = match.shippingDetails.email && contactInput.toLowerCase() === match.shippingDetails.email.toLowerCase();
+        const matchPhone = match.shippingDetails.phone && contactInput === match.shippingDetails.phone;
+
+        if (!matchEmail && !matchPhone) {
+          showErrorState(resultDiv, orderId);
+          return;
+        }
+
+        // Stepper calculations based on order status (5 Steps: Confirmed -> Packed -> Shipped -> Out for Delivery -> Delivered)
+        const curStatus = match.status.toLowerCase();
+        
+        let step1 = "active"; // Confirmed
+        let step2 = "";       // Packed
+        let step3 = "";       // Shipped
+        let step4 = "";       // Out for Delivery
+        let step5 = "";       // Delivered
+        let progressPercent = 0;
+
+        if (curStatus === "processing") {
+          step2 = "active";
+          progressPercent = 25;
+        } else if (curStatus === "shipped") {
+          step2 = "active";
+          step3 = "active";
+          step4 = "active"; // Out for delivery
+          progressPercent = 75;
+        } else if (curStatus === "delivered") {
+          step2 = "active";
+          step3 = "active";
+          step4 = "active";
+          step5 = "active";
+          progressPercent = 100;
+        }
+
+        // Calculate estimated delivery
+        const estDays = match.shippingDetails.deliveryMethod === "express" ? 2 : 5;
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + estDays);
+        const estDeliveryStr = deliveryDate.toLocaleDateString("en-IN", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Courier details
+        const courierName = match.shippingDetails.deliveryMethod === "express" ? "Bluedart Express Air" : "Delhivery Surface Logistics";
+        const trackingIdCode = "RA-TRK-" + match.orderId.replace("RA-", "");
+
+        let itemsSummary = match.items.map(it => `
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(88,17,26,0.1); padding: 0.75rem 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <img src="${it.image}" alt="${it.name}" style="width: 40px; height: 55px; object-fit: cover; border-radius: var(--border-radius-xs); border: 1px solid var(--color-gray-light);">
+              <div>
+                <span style="font-weight: 600; font-size: 0.9rem; color: var(--color-charcoal); display: block;">${it.name}</span>
+                <span style="font-size: 0.75rem; color: var(--color-gray);">Size: ${it.size} | Color: ${it.color || 'Default'} | Qty: ${it.quantity}</span>
+              </div>
+            </div>
+            <strong>${formatCurrency(it.price * it.quantity)}</strong>
+          </div>
+        `).join("");
+
+        resultDiv.innerHTML = `
+          <div style="background-color: var(--color-white); border: 1px solid var(--color-gray-light); padding: 2.5rem; border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+            
+            <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-maroon-dark); margin-bottom: 2rem; border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem;">
+              Tracking Details for #${match.orderId}
+            </h3>
+
+            <!-- 5-Step Stepper Graphic -->
+            <div class="tracker-stepper" style="display: flex; justify-content: space-between; position: relative; margin-bottom: 3.5rem; padding-top: 1rem;">
+              
+              <!-- Line Connector -->
+              <div style="position: absolute; top: 22px; left: 10%; right: 10%; height: 3px; background-color: var(--color-gray-light); z-index: 1;">
+                <div style="width: ${progressPercent}%; height: 100%; background-color: var(--color-gold); transition: width 0.4s ease;"></div>
+              </div>
+
+              <!-- Step 1: Confirmed -->
+              <div class="step-item" style="text-align: center; width: 18%; z-index: 2; position: relative;">
+                <span class="step-bullet ${step1}" style="width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-white); border: 2px solid var(--color-gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 0.7rem; font-weight: bold; color: var(--color-gold-dark);">✓</span>
+                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; display: block; line-height: 1.2;">Confirmed</span>
+              </div>
+
+              <!-- Step 2: Packed -->
+              <div class="step-item" style="text-align: center; width: 18%; z-index: 2; position: relative;">
+                <span class="step-bullet ${step2}" style="width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-white); border: 2px solid ${step2 ? 'var(--color-gold)' : 'var(--color-gray-light)'}; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 0.7rem; font-weight: bold; color: ${step2 ? 'var(--color-gold-dark)' : 'var(--color-gray)'};">${step2 ? '✓' : '2'}</span>
+                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: ${step2 ? 'var(--color-charcoal)' : 'var(--color-gray)'}; display: block; line-height: 1.2;">Packed</span>
+              </div>
+
+              <!-- Step 3: Shipped -->
+              <div class="step-item" style="text-align: center; width: 18%; z-index: 2; position: relative;">
+                <span class="step-bullet ${step3}" style="width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-white); border: 2px solid ${step3 ? 'var(--color-gold)' : 'var(--color-gray-light)'}; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 0.7rem; font-weight: bold; color: ${step3 ? 'var(--color-gold-dark)' : 'var(--color-gray)'};">${step3 ? '✓' : '3'}</span>
+                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: ${step3 ? 'var(--color-charcoal)' : 'var(--color-gray)'}; display: block; line-height: 1.2;">Shipped</span>
+              </div>
+
+              <!-- Step 4: Out for Delivery -->
+              <div class="step-item" style="text-align: center; width: 18%; z-index: 2; position: relative;">
+                <span class="step-bullet ${step4}" style="width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-white); border: 2px solid ${step4 ? 'var(--color-gold)' : 'var(--color-gray-light)'}; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 0.7rem; font-weight: bold; color: ${step4 ? 'var(--color-gold-dark)' : 'var(--color-gray)'};">${step4 ? '✓' : '4'}</span>
+                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: ${step4 ? 'var(--color-charcoal)' : 'var(--color-gray)'}; display: block; line-height: 1.2;">Out for Delivery</span>
+              </div>
+
+              <!-- Step 5: Delivered -->
+              <div class="step-item" style="text-align: center; width: 18%; z-index: 2; position: relative;">
+                <span class="step-bullet ${step5}" style="width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-white); border: 2px solid ${step5 ? 'var(--color-gold)' : 'var(--color-gray-light)'}; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 0.7rem; font-weight: bold; color: ${step5 ? 'var(--color-gold-dark)' : 'var(--color-gray)'};">${step5 ? '✓' : '5'}</span>
+                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: ${step5 ? 'var(--color-charcoal)' : 'var(--color-gray)'}; display: block; line-height: 1.2;">Delivered</span>
+              </div>
+
+            </div>
+
+            <style>
+              .step-bullet.active {
+                background-color: var(--color-gold) !important;
+                border-color: var(--color-gold) !important;
+                color: var(--color-maroon-dark) !important;
+              }
+            </style>
+
+            <!-- Text Summary Grid Details -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; font-size: 0.95rem; margin-bottom: 2rem;">
+              <div>
+                <h4 style="font-weight: 700; color: var(--color-maroon-dark); border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 0.5rem; margin-bottom: 0.75rem;">Fulfillment & Courier</h4>
+                <p style="margin: 0.35rem 0;"><strong>Courier Carrier:</strong> ${courierName}</p>
+                <p style="margin: 0.35rem 0;"><strong>Tracking ID:</strong> #${trackingIdCode}</p>
+                <p style="margin: 0.35rem 0;"><strong>Estimated Arrival:</strong> <span style="color:var(--color-success); font-weight:600;">${estDeliveryStr}</span></p>
+                <p style="margin: 0.35rem 0;"><strong>Current Status:</strong> <span style="font-weight:700; color:var(--color-maroon); text-transform:capitalize;">${curStatus}</span></p>
+              </div>
+              <div>
+                <h4 style="font-weight: 700; color: var(--color-maroon-dark); border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 0.5rem; margin-bottom: 0.75rem;">Shipping Address</h4>
+                <p style="margin: 0; line-height: 1.4;">${match.shippingDetails.address}</p>
+                <p style="margin: 0.35rem 0 0 0;">Phone: +91 ${match.shippingDetails.phone}</p>
+              </div>
+            </div>
+
+            <!-- Items detailed breakdown -->
+            <div style="margin-top: 2rem; border-top: 1px solid var(--color-gray-light); padding-top: 1.5rem;">
+              <h4 style="font-weight: 700; color: var(--color-maroon-dark); margin-bottom: 1rem;">Suits Woven</h4>
+              ${itemsSummary}
+              <div style="display: flex; justify-content: space-between; margin-top: 1.25rem; font-weight: bold; font-size: 1.15rem; color: var(--color-maroon-dark);">
+                <span>Total Amount Paid</span>
+                <span>${formatCurrency(match.total)}</span>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      function showErrorState(resultDiv, orderId) {
+        resultDiv.innerHTML = `
+          <div style="background-color: var(--color-white); border: 1px solid var(--color-gray-light); padding: 3rem 2rem; text-align: center; border-radius: var(--border-radius-xs); box-shadow: var(--shadow-sm);">
+            <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 1.5rem; display: block; color: var(--color-error);">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-error); margin-bottom: 0.5rem;">Fulfillment Record Not Found</h3>
+            <p style="color: var(--color-charcoal-light); font-size: 0.95rem; max-width: 460px; margin: 0 auto 1.5rem;">We couldn't locate any active order with ID "${orderId}" matching your email or phone coordinates. Please verify your entries and try again.</p>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
+
+

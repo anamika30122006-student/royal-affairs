@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bespoke Designer Ethnic Suits | Royal Affair – Designer Suits</title>
+  <meta name="description"
+    content="View product specifications, hand-embroidery details, fabrics, and care instructions. Select sizes and add to cart. Premium designer Indian wear.">
+
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+
+  <style>
+    /* Product Page Specific Styles */
+    .product-zoom-container {
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+      width: 100%;
+      aspect-ratio: 3/4;
+      border: 1px solid var(--color-gray-light);
+      border-radius: var(--border-radius-xs);
+    }
+
+    .product-zoom-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Carousel Arrows */
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--color-charcoal);
+      transition: all var(--transition-fast);
+      z-index: 5;
+    }
+
+    .gallery-arrow:hover {
+      background-color: var(--color-maroon);
+      color: var(--color-white);
+    }
+
+    #prev-img-btn {
+      left: 10px;
+    }
+
+    #next-img-btn {
+      right: 10px;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(36, 33, 36, 0.95);
+      z-index: 10005;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85%;
+      object-fit: contain;
+      border-radius: var(--border-radius-xs);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: var(--color-white);
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Size selector active states */
+    .prod-size-btn.active {
+      background-color: var(--color-maroon) !important;
+      color: var(--color-white) !important;
+      border-color: var(--color-maroon) !important;
+    }
+
+    /* Color Swatches selection */
+    .prod-color-swatch {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid rgba(36, 33, 36, 0.15);
+      transition: all var(--transition-fast);
+      margin-right: 8px;
+    }
+
+    .prod-color-swatch.active {
+      border-color: var(--color-maroon) !important;
+      transform: scale(1.15);
+    }
+
+    /* Pincode Checker styles */
+    .pincode-checker-box {
+      border: 1px solid var(--color-gray-light);
+      border-radius: var(--border-radius-xs);
+      padding: var(--spacing-md);
+      background-color: var(--color-white);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .pincode-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pincode-input {
+      flex: 1;
+      padding: 0.5rem var(--spacing-sm);
+      border: 1px solid var(--color-gray-light);
+      border-radius: var(--border-radius-xs);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .pincode-btn {
+      background-color: var(--color-gold);
+      color: var(--color-white);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--border-radius-xs);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .pincode-btn:hover {
+      background-color: var(--color-gold-dark);
+    }
+
+    /* Accordion Styles */
+    .accordion-item {
+      border-bottom: 1px solid var(--color-gray-light);
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1rem 0;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--color-maroon-dark);
+      font-weight: 500;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      padding: 0 0 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-charcoal-light);
+      display: none;
+    }
+
+    .accordion-content.open {
+      display: block;
+    }
+
+    /* Upsell Bundles */
+    .bought-together-container {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-light);
+      padding: 1.5rem;
+      border-radius: var(--border-radius-xs);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .bundle-images {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .bundle-plus {
+      font-size: 1.5rem;
+      color: var(--color-gold);
+      font-weight: 600;
+    }
+
+    /* Sticky Mobile cart footer */
+    .sticky-mobile-cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--color-white);
+      border-top: 1.5px solid var(--color-gold);
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .sticky-mobile-cart-bar.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Announcement Bar & Header injected dynamically by main.js -->
+
+  <!-- Breadcrumbs -->
+  <div style="background-color: var(--color-white); border-bottom: 1px solid var(--color-gray-light);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"></span>
+        <a href="shop.html">Shop</a>
+        <span class="separator"></span>
+        <span id="breadcrumb-category" style="text-transform: uppercase;">Category</span>
+        <span class="separator"></span>
+        <span id="breadcrumb-product-title" class="current">Product Title</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details Section -->
+  <section class="section-padding container">
+    <div id="product-container"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-xxl);">
+      <!-- Load dynamic details using script -->
+    </div>
+
+    <!-- Frequently Bought Together Bundle -->
+    <div id="frequently-bought-together-section">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Details Accordion / Tabs -->
+    <div style="max-width: 800px; margin: 0 auto var(--spacing-xxl);">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          Product Specifications
+          <span style="font-size: 1.25rem;">+</span>
+        </button>
+        <div class="accordion-content open">
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr style="border-bottom: 1px dashed rgba(88,17,26,0.1);">
+              <td style="padding: 0.5rem 0; font-weight: 600; width: 150px;">Fabric Material:</td>
+              <td id="accordion-fabric-val">-</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed rgba(88,17,26,0.1);">
+              <td style="padding: 0.5rem 0; font-weight: 600;">Collection:</td>
+              <td id="accordion-collection-val">-</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed rgba(88,17,26,0.1);">
+              <td style="padding: 0.5rem 0; font-weight: 600;">Ideal Occasion:</td>
+              <td id="accordion-occasion-val">-</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed rgba(88,17,26,0.1);">
+              <td style="padding: 0.5rem 0; font-weight: 600;">Product SKU:</td>
+              <td id="accordion-sku-val">-</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          Fabric & Embroidery Heritage
+          <span style="font-size: 1.25rem;">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>Hand-tailored by master weavers in Uttar Pradesh, our suits feature luxury counts of pure fabric yards.
+            Each embroidery segment details intricate zari, tilla threadings, or handloom sequined motifs reflecting
+            authentic heritage styles.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          Size & Bespoke Fit
+          <span style="font-size: 1.25rem;">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>This premium ethnic suit conforms to custom standards. Side seams contain up to 2 inches of interior margin
+            buffer to enable personalized tailorings. Sleeve lengths can be modified upon request post-checkout.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          Wash Care Instructions
+          <span style="font-size: 1.25rem;">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>Dry Clean Only. Iron inside out using mild steam settings. Do not spray perfumes directly onto metal
+            embroidery zari segments.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          Shipping & Returns Policy
+          <span style="font-size: 1.25rem;">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>Complimentary Express Shipping across India. Bespoke customized stitching suites are final sale.
+            Unstitched/Standard retail packages qualify for a 7-day hassle-free exchange window.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div
+      style="background-color: var(--color-white); border: 1px solid var(--color-gray-light); padding: 2rem; border-radius: var(--border-radius-xs); margin-bottom: var(--spacing-xxl);">
+      <h3
+        style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.75rem; margin-bottom: 1.5rem;">
+        Customer Testimonials</h3>
+
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-lg); margin-bottom: 2rem;">
+        <div>
+          <span
+            style="font-size: 3rem; font-weight: 700; color: var(--color-maroon); display: block; line-height: 1;">4.8</span>
+          <span style="color: var(--color-gold); font-size: 1.25rem; display: block; margin: 0.5rem 0;">★ ★ ★ ★ ★</span>
+          <span style="font-size: 0.85rem; color: var(--color-gray);">Based on verified purchases across India</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.35rem; justify-content: center;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+            <span style="width: 40px;">5 Star</span>
+            <div
+              style="flex: 1; height: 8px; background-color: var(--color-gray-light); border-radius: 4px; overflow: hidden;">
+              <div style="width: 82%; height: 100%; background-color: var(--color-gold);"></div>
+            </div>
+            <span style="width: 30px; text-align: right;">82%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+            <span style="width: 40px;">4 Star</span>
+            <div
+              style="flex: 1; height: 8px; background-color: var(--color-gray-light); border-radius: 4px; overflow: hidden;">
+              <div style="width: 12%; height: 100%; background-color: var(--color-gold);"></div>
+            </div>
+            <span style="width: 30px; text-align: right;">12%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+            <span style="width: 40px;">3 Star</span>
+            <div
+              style="flex: 1; height: 8px; background-color: var(--color-gray-light); border-radius: 4px; overflow: hidden;">
+              <div style="width: 4%; height: 100%; background-color: var(--color-gold);"></div>
+            </div>
+            <span style="width: 30px; text-align: right;">4%</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="display: flex; flex-direction: column; gap: 1rem; border-top: 1px solid var(--color-gray-light); padding-top: 1.5rem; margin-bottom: 2rem;">
+        <div style="border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+            <strong style="font-size: 0.95rem;">Anjali S. (Meerut)</strong>
+            <span style="color: var(--color-gold); font-size: 0.85rem;">★ ★ ★ ★ ★</span>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--color-charcoal-light); font-style: italic;">"Absolutely stellar
+            velvet quality! The hand-embroidery is incredibly clean. Felt like royalty wearing it for my sister's
+            mehndi."</p>
+        </div>
+        <div style="border-bottom: 1px dashed var(--color-gray-light); padding-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+            <strong style="font-size: 0.95rem;">Zeba K. (Delhi)</strong>
+            <span style="color: var(--color-gold); font-size: 0.85rem;">★ ★ ★ ★ ★</span>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--color-charcoal-light); font-style: italic;">"The fit conforms
+            exactly to the charts. Beautiful fabric sheen and rapid express shipping. Royal Affair is my new favorite
+            label."</p>
+        </div>
+      </div>
+
+      <!-- Write review form -->
+      <form onsubmit="event.preventDefault(); showToast('Review submitted for approval. Thank you!'); this.reset();"
+        style="background-color: var(--color-beige); border: 1px dashed var(--color-gold); padding: 1.5rem; border-radius: var(--border-radius-xs);">
+        <h4
+          style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-maroon-dark); margin-bottom: 1rem;">
+          Share Your Experience</h4>
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="font-size: 0.8rem; display: block; margin-bottom: 0.25rem; font-weight: 600;">Your
+              Name</label>
+            <input type="text" required
+              style="width:100%; padding:0.5rem; border:1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); outline:none;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; display: block; margin-bottom: 0.25rem; font-weight: 600;">Overall
+              Rating</label>
+            <select
+              style="width:100%; padding:0.5rem; border:1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); outline:none;">
+              <option value="5">5 Stars (Excellent)</option>
+              <option value="4">4 Stars (Good)</option>
+              <option value="3">3 Stars (Average)</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.8rem; display: block; margin-bottom: 0.25rem; font-weight: 600;">Review
+            Content</label>
+          <textarea rows="3" required
+            style="width:100%; padding:0.5rem; border:1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); outline:none; resize: none;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- Related Products Showcase -->
+    <div style="margin-bottom: var(--spacing-xxl);">
+      <div class="section-header">
+        <span class="subtitle">Complements Your Style</span>
+        <h2>You May Also Adore</h2>
+      </div>
+      <div id="related-products-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--spacing-lg);">
+        <!-- Loaded by script -->
+      </div>
+    </div>
+
+    <!-- Recently Viewed shelf -->
+    <div id="recently-viewed-section" style="display: none; margin-bottom: var(--spacing-xl);">
+      <div class="section-header">
+        <span class="subtitle">Your Collection History</span>
+        <h2>Recently Viewed Styles</h2>
+      </div>
+      <div id="grid-recently-viewed"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--spacing-lg);">
+        <!-- Populated via localStorage viewed product IDs -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Mobile Add to Cart Drawer -->
+  <div class="sticky-mobile-cart-bar" id="mobile-sticky-buy-bar">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <img id="sticky-bar-img" src="" alt="suit thumbnail"
+        style="width: 40px; height: 52px; object-fit: cover; border-radius: var(--border-radius-xs);">
+      <div>
+        <h5 id="sticky-bar-title"
+          style="margin: 0; font-size: 0.8rem; font-family: var(--font-body); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px;">
+          Suit Name</h5>
+        <span id="sticky-bar-price" style="font-size: 0.8rem; font-weight: 700; color: var(--color-maroon);">₹0</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.35rem;">
+      <select id="sticky-bar-size-select"
+        style="padding: 0.35rem; font-size: 0.75rem; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); outline: none;">
+        <!-- Filled dynamically -->
+      </select>
+      <button class="btn btn-primary btn-sm" id="sticky-bar-add-btn"
+        style="padding: 0.4rem 0.75rem; font-size: 0.75rem; white-space: nowrap;">Add</button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Gallery Lightbox Overlay -->
+  <div class="lightbox-modal" id="gallery-lightbox-overlay" onclick="closeFullscreenGallery()">
+    <button class="lightbox-close">&times;</button>
+    <img src="" class="lightbox-content" id="gallery-lightbox-image" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Size Chart Guide Modal Overlay -->
+  <div class="modal-overlay" id="size-guide-modal-overlay">
+    <div class="modal-container" style="max-width: 550px; text-align: center; padding: 2rem;">
+      <button class="modal-close-btn" onclick="toggleSizeGuideModal(false)">&times;</button>
+      <h3
+        style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-maroon-dark); margin-bottom: 0.5rem;">
+        Size Reference Guide</h3>
+      <p style="font-size: 0.85rem; color: var(--color-gray); margin-bottom: 1.5rem;">Measure around the fullest part of
+        your chest and waist to verify sizes.</p>
+
+      <table style="width: 100%; font-size: 0.85rem; text-align: center; border-collapse: collapse;">
+        <thead>
+          <tr style="background-color: var(--color-beige); border-bottom: 1.5px solid var(--color-maroon);">
+            <th style="padding: 0.5rem;">Size</th>
+            <th style="padding: 0.5rem;">Bust (Inches)</th>
+            <th style="padding: 0.5rem;">Waist (Inches)</th>
+            <th style="padding: 0.5rem;">Hips (Inches)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-gray-light);">
+            <td style="padding: var(--spacing-sm); font-weight: 600;">S</td>
+            <td>36"</td>
+            <td>30"</td>
+            <td>39"</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-gray-light);">
+            <td style="padding: var(--spacing-sm); font-weight: 600;">M</td>
+            <td>38"</td>
+            <td>32"</td>
+            <td>41"</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-gray-light);">
+            <td style="padding: var(--spacing-sm); font-weight: 600;">L</td>
+            <td>40"</td>
+            <td>34"</td>
+            <td>43"</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-gray-light);">
+            <td style="padding: var(--spacing-sm); font-weight: 600;">XL</td>
+            <td>42"</td>
+            <td>36"</td>
+            <td>45"</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-gray-light);">
+            <td style="padding: var(--spacing-sm); font-weight: 600;">XXL</td>
+            <td>44"</td>
+            <td>38"</td>
+            <td>47"</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn btn-outline btn-block btn-sm" onclick="toggleSizeGuideModal(false)"
+        style="margin-top: 1.5rem;">Close Guide</button>
+    </div>
+  </div>
+
+  <!-- Search and Drawer markup elements parsed by main.js automatically -->
+
+  <!-- Core Scripts -->
+  <script src="./js/products.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/wishlist.js"></script>
+  <script src="./js/compare.js"></script>
+  <script src="./js/search.js"></script>
+
+  <!-- Dynamic Load Script -->
+  <script>
+    let activeSelectedSize = "M";
+    let activeSelectedColor = "";
+    let currentProductImageIndex = 0;
+    let productImagesList = [];
+    let activeProductObj = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let prodId = parseInt(urlParams.get("id")) || 1; // Load by ID
+
+      const product = getProductById(prodId);
+      if (!product) {
+        window.location.href = "404.html";
+        return;
+      }
+
+      activeProductObj = product;
+      productImagesList = product.images;
+      activeSelectedColor = product.colors && product.colors.length > 0 ? product.colors[0] : "Default";
+
+      // Track recently viewed history
+      if (typeof trackRecentlyViewed === "function") trackRecentlyViewed(product.id);
+
+      // Populate breadcrumb paths
+      document.getElementById("breadcrumb-category").textContent = product.category;
+      document.getElementById("breadcrumb-category").href = `shop.html?category=${encodeURIComponent(product.category)}`;
+      document.getElementById("breadcrumb-product-title").textContent = product.name;
+
+      // Populate Accordion tabs specs
+      document.getElementById("accordion-fabric-val").textContent = product.fabric || "Premium Silk Velvet";
+      document.getElementById("accordion-collection-val").textContent = product.subcategory || "Meher Festive Collection";
+      document.getElementById("accordion-occasion-val").textContent = product.occasion || "Festive Celebrations / Wedding";
+      document.getElementById("accordion-sku-val").textContent = product.sku || `RA-SUIT-0${product.id}`;
+
+      // Populate Details Container HTML
+      const container = document.getElementById("product-container");
+
+      let priceHtml = `<span style="font-size: 2rem; font-weight: 700; color: var(--color-maroon);">${formatCurrency(product.price)}</span>`;
+      if (product.originalPrice > product.price) {
+        priceHtml = `
+          <span style="font-size: 2rem; font-weight: 700; color: var(--color-maroon);">${formatCurrency(product.price)}</span>
+          <span style="font-size: 1.35rem; text-decoration: line-through; color: var(--color-gray); margin-left: 0.75rem;">${formatCurrency(product.originalPrice)}</span>
+          <span style="font-size: 0.9rem; color: var(--color-gold-dark); font-weight: 700; margin-left: 0.75rem; background-color: var(--color-beige); padding: 2px 8px; border-radius: var(--border-radius-xs); border: 1px solid rgba(194,155,85,0.25);">Save ${product.discount}%</span>
+        `;
+      }
+
+      // Sizes buttons
+      let sizeBtnsHtml = "";
+      product.sizes.forEach((sz, idx) => {
+        sizeBtnsHtml += `
+          <button class="prod-size-btn ${sz === 'M' ? 'active' : ''}" onclick="selectProductPageSize(this, '${sz}')" style="width: 38px; height: 38px; border: 1px solid var(--color-gray-light); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); border-radius: var(--border-radius-xs); background-color: var(--color-white);">
+            ${sz}
+          </button>
+        `;
+      });
+
+      // Colors swatches
+      let colorsSwatchesHtml = "";
+      product.colors.forEach((col, idx) => {
+        let cssColor = col.toLowerCase();
+        if (col === "Plum") cssColor = "#4A1835";
+        if (col === "Deep Maroon" || col === "Maroon") cssColor = "#6B1F2A";
+        if (col === "Muted Gold" || col === "Gold") cssColor = "#C29B55";
+        if (col === "Ivory") cssColor = "#FFF9F1";
+        if (col === "Cream") cssColor = "#F3E8D8";
+        if (col === "Peach") cssColor = "#FFDAB9";
+        if (col === "Soft Pink") cssColor = "#FFB6C1";
+
+        colorsSwatchesHtml += `
+          <span class="prod-color-swatch ${idx === 0 ? 'active' : ''}" data-color="${col}" onclick="selectProductPageColor(this, '${col}')" title="${col}" style="background-color: ${cssColor};"></span>
+        `;
+      });
+
+      // Thumbnails
+      let thumbHtml = "";
+      product.images.forEach((img, i) => {
+        thumbHtml += `
+          <img src="${img}" alt="thumbnail ${i}" onclick="switchProductPageMainImage(${i})" class="gallery-thumbnail-node" style="width: 70px; height: 90px; object-fit: cover; cursor: pointer; border: 1.5px solid ${i === 0 ? 'var(--color-maroon)' : 'var(--color-gray-light)'}; border-radius: var(--border-radius-xs); transition: border-color var(--transition-fast);">
+        `;
+      });
+
+      // Stock status builder
+      let stockStatusHtml = `<span style="font-size: 0.85rem; color: var(--color-success); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-success); display: inline-block;"></span>In Stock (Ready to Ship)</span>`;
+      if (product.stock < 5 && product.stock > 0) {
+        stockStatusHtml = `<span style="font-size: 0.85rem; color: var(--color-gold-dark); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-gold); display: inline-block;"></span>Only ${product.stock} Left - Order Soon!</span>`;
+      } else if (product.stock === 0) {
+        stockStatusHtml = `<span style="font-size: 0.85rem; color: var(--color-error); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-error); display: inline-block;"></span>Temporarily Sold Out</span>`;
+      }
+
+      // Prefilled WhatsApp link
+      const whatsappMsg = encodeURIComponent(`Hello Royal Affair, I am interested in details regarding the "${product.name}" (SKU: ${product.sku || 'RA-' + product.id}). Kindly assist.`);
+      const whatsappLink = `https://wa.me/919219956289?text=${whatsappMsg}`;
+
+      container.innerHTML = `
+        <!-- Left: Carousel Gallery and Zoom tools -->
+        <div style="position: relative;">
+          <div class="product-zoom-container" id="zoom-frame" onclick="openFullscreenGallery()">
+            <img id="main-product-image" src="${product.images[0]}" alt="${product.name}">
+            
+            <button class="gallery-arrow" id="prev-img-btn" onclick="event.stopPropagation(); triggerGalleryPrev()">&lsaquo;</button>
+            <button class="gallery-arrow" id="next-img-btn" onclick="event.stopPropagation(); triggerGalleryNext()">&rsaquo;</button>
+          </div>
+          <div style="display: flex; gap: 0.65rem; justify-content: center; margin-top: 1rem; overflow-x: auto; padding-bottom: 5px;">
+            ${thumbHtml}
+          </div>
+        </div>
+
+        <!-- Right: Text customization blocks -->
+        <div style="display: flex; flex-direction: column; justify-content: flex-start; text-align: left;">
+          <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gold-dark); font-weight: 700; margin-bottom: 0.5rem;">
+            ${product.category}
+          </span>
+          <h2 style="font-family: var(--font-heading); font-size: 2.4rem; font-weight: 500; color: var(--color-maroon-dark); line-height: 1.1; margin: 0 0 0.5rem 0;">
+            ${product.name}
+          </h2>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; font-size: 0.85rem; border-bottom: 1px solid var(--color-gray-light); padding-bottom: 1rem;">
+            <span style="color: var(--color-gold);">★ ★ ★ ★ ★</span>
+            <span style="color: var(--color-gray); font-weight: 600;">
+              ${product.rating} / 5.0 (${product.reviewCount} Verified Reviews)
+            </span>
+            <span style="color: var(--color-gray-light);">|</span>
+            <span style="color: var(--color-gray);">SKU: ${product.sku || 'RA-SUIT-0' + product.id}</span>
+          </div>
+
+          <div style="margin-bottom: 0.5rem; display: flex; align-items: center; flex-wrap: wrap;">
+            ${priceHtml}
+          </div>
+          <span style="font-size: 0.8rem; color: var(--color-gray); font-weight: 500; display: block; margin-bottom: 1.5rem;">Price inclusive of all taxes. (Custom Stitching Extras apply)</span>
+
+          <!-- Color selection -->
+          <div style="margin-bottom: 1.25rem;">
+            <h4 style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Color Select</h4>
+            <div style="display: flex; align-items: center;">
+              ${colorsSwatchesHtml}
+            </div>
+          </div>
+
+          <!-- Size selector + size chart modal anchor link -->
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; max-width: 250px; margin-bottom: 0.5rem;">
+              <h4 style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Size Select</h4>
+              <button onclick="toggleSizeGuideModal(true)" style="background: none; border: none; font-size: 0.8rem; color: var(--color-maroon); font-weight: 600; cursor: pointer; text-decoration: underline;">Size Guide</button>
+            </div>
+            <div style="display: flex; gap: 0.35rem; align-items: center;">
+              ${sizeBtnsHtml}
+            </div>
+          </div>
+
+          <!-- Quantity, Stock Status, and Actions -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <h4 style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Quantity</h4>
+              ${stockStatusHtml}
+            </div>
+            
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <div class="qty-selector" style="height: 48px; border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);">
+                <button class="qty-btn" onclick="adjustProductPageQty(-1)">-</button>
+                <input type="text" id="product-qty-input" class="qty-input" value="1" readonly style="width: 38px; font-size: 1rem; border: none;">
+                <button class="qty-btn" onclick="adjustProductPageQty(1)">+</button>
+              </div>
+              
+              <button class="btn btn-primary" style="height: 48px; flex: 1;" onclick="triggerAddToCartPage()" ${product.stock === 0 ? 'disabled style="background-color: var(--color-gray-dark); opacity: 0.7; cursor: not-allowed;"' : ''}>
+                ${product.stock === 0 ? 'Sold Out' : 'Add to Cart'}
+              </button>
+
+              <button class="btn btn-outline" style="height: 48px; flex: 1; border-color: var(--color-maroon); color: var(--color-maroon);" onclick="triggerBuyNow()" ${product.stock === 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                Buy It Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Pincode Checker -->
+          <div class="pincode-checker-box">
+            <h4 style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Check Serviceability</h4>
+            <div class="pincode-input-row">
+              <input type="text" id="pincode-input-field" class="pincode-input" placeholder="Enter 6-Digit PIN Code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              <button class="pincode-btn" onclick="checkDeliveryPINCode()">Check</button>
+            </div>
+            <div id="pincode-result-msg" style="font-size: 0.8rem; font-weight: 500; margin-top: 0.5rem; display: none;"></div>
+          </div>
+
+          <!-- Wishlist, Compare, WhatsApp, Share Actions row -->
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-md);">
+            <button class="btn btn-outline btn-sm" onclick="toggleWishlist(${product.id})" style="padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              Add to Wishlist
+            </button>
+
+            <a href="${whatsappLink}" target="_blank" class="btn btn-outline btn-sm" style="padding: 0.5rem 1rem; border-color: #25D366; color: #25D366; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none;">
+              WhatsApp Enquiry
+            </a>
+          </div>
+
+          <!-- Social Share button icons -->
+          <div style="display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+            <span style="font-size: 0.8rem; color: var(--color-gray); font-weight: 600; text-transform: uppercase;">Share Suit:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" title="Share on Facebook" style="color: var(--color-charcoal-light);"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 8H7v3h2v9h3v-9h3l.5-3H12V6c0-.5.5-1 1-1h2V2h-3C9.5 2 9 3.5 9 5v3z"></path></svg></a>
+            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}" target="_blank" title="Pin on Pinterest" style="color: var(--color-charcoal-light);"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.2 2.6 7.8 6.3 9.3-.1-.8-.2-2 .0-2.9.2-.9 1.4-6.1 1.4-6.1s-.4-.7-.4-1.8c0-1.7 1-3 2.2-3 1 0 1.5.8 1.5 1.7 0 1-.7 2.6-1 4.1-.3 1.2.6 2.2 1.8 2.2 2.1 0 3.8-2.2 3.8-5.5 0-2.9-2.1-4.9-5-4.9-3.4 0-5.4 2.6-5.4 5.2 0 1 .4 2.1.9 2.7.1.1.1.2.1.3l-.3 1.4c-.1.2-.2.3-.4.2-1.2-.6-2-2.3-2-3.7 0-3.7 2.7-7.2 7.8-7.2 4.1 0 7.3 2.9 7.3 6.9 0 4.1-2.6 7.4-6.2 7.4-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.3-1.5 3.1C10.7 21.8 11.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"></path></svg></a>
+            <button onclick="copyProductLinkClipboard()" title="Copy Link" style="background: none; border: none; cursor: pointer; color: var(--color-charcoal-light); display: inline-flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+          </div>
+
+        </div>
+      `;
+
+      // Active zoom logic
+      initProductImageZoom();
+
+      // Mobile swipes listener
+      initMobileSwipeGestures();
+
+      // Load matching upsell bundle
+      loadBoughtTogetherBundle(product);
+
+      // Load related products
+      loadRelatedSuits(product.category, product.id);
+
+      // Render Recently viewed list
+      renderRecentlyViewedGrid(product.id);
+
+      // Populate Mobile Sticky Bar details
+      initStickyMobileBar(product);
+    });
+
+    // 1. Zoom implementation
+    function initProductImageZoom() {
+      const zoomContainer = document.getElementById("zoom-frame");
+      if (!zoomContainer) return;
+      const img = zoomContainer.querySelector("img");
+
+      zoomContainer.addEventListener("mousemove", (e) => {
+        // Prevent zoom scaling on small mobile widths
+        if (window.innerWidth <= 768) return;
+
+        const rect = zoomContainer.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        img.style.transformOrigin = `${x}% ${y}%`;
+        img.style.transform = "scale(1.8)";
+      });
+
+      zoomContainer.addEventListener("mouseleave", () => {
+        img.style.transform = "scale(1)";
+        img.style.transformOrigin = "center center";
+      });
+    }
+
+    // 2. Swipe gestures for mobile carousel
+    function initMobileSwipeGestures() {
+      const frame = document.getElementById("zoom-frame");
+      if (!frame) return;
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      frame.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      frame.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipeGesture();
+      }, { passive: true });
+
+      function handleSwipeGesture() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) {
+          // Swipe Left -> next image
+          triggerGalleryNext();
+        } else if (touchEndX - touchStartX > threshold) {
+          // Swipe Right -> previous image
+          triggerGalleryPrev();
+        }
+      }
+    }
+
+    // 3. Carousel arrows
+    function triggerGalleryNext() {
+      currentProductImageIndex++;
+      if (currentProductImageIndex >= productImagesList.length) {
+        currentProductImageIndex = 0;
+      }
+      switchProductPageMainImage(currentProductImageIndex);
+    }
+
+    function triggerGalleryPrev() {
+      currentProductImageIndex--;
+      if (currentProductImageIndex < 0) {
+        currentProductImageIndex = productImagesList.length - 1;
+      }
+      switchProductPageMainImage(currentProductImageIndex);
+    }
+
+    function switchProductPageMainImage(idx) {
+      currentProductImageIndex = idx;
+
+      const mainImg = document.getElementById("main-product-image");
+      if (mainImg) mainImg.src = productImagesList[idx];
+
+      const thumbs = document.querySelectorAll(".gallery-thumbnail-node");
+      thumbs.forEach((thumb, i) => {
+        if (i === idx) {
+          thumb.style.borderColor = "var(--color-maroon)";
+        } else {
+          thumb.style.borderColor = "var(--color-gray-light)";
+        }
+      });
+    }
+
+    // 4. Color selections
+    function selectProductPageColor(span, col) {
+      const swatches = document.querySelectorAll(".prod-color-swatch");
+      swatches.forEach(s => s.classList.remove("active"));
+
+      span.classList.add("active");
+      activeSelectedColor = col;
+    }
+
+    // 5. Size selections
+    function selectProductPageSize(btn, sz) {
+      const buttons = document.querySelectorAll(".prod-size-btn");
+      buttons.forEach(b => b.classList.remove("active"));
+
+      btn.classList.add("active");
+      activeSelectedSize = sz;
+
+      // Sync with mobile sticky bar select
+      const stickySelect = document.getElementById("sticky-bar-size-select");
+      if (stickySelect) stickySelect.value = sz;
+    }
+
+    // 6. Qty Adjust
+    function adjustProductPageQty(val) {
+      const input = document.getElementById("product-qty-input");
+      if (!input) return;
+      let qty = parseInt(input.value) || 1;
+      qty += val;
+      if (qty < 1) qty = 1;
+      input.value = qty;
+    }
+
+    // 7. Fullscreen Lightbox triggers
+    function openFullscreenGallery() {
+      const modal = document.getElementById("gallery-lightbox-overlay");
+      const lightImg = document.getElementById("gallery-lightbox-image");
+      const mainImg = document.getElementById("main-product-image");
+      if (modal && lightImg && mainImg) {
+        lightImg.src = mainImg.src;
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function closeFullscreenGallery() {
+      const modal = document.getElementById("gallery-lightbox-overlay");
+      if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    }
+
+    // 8. Size chart Guide modal toggle
+    function toggleSizeGuideModal(isOpen) {
+      const modal = document.getElementById("size-guide-modal-overlay");
+      if (!modal) return;
+
+      if (isOpen) {
+        modal.classList.add("open");
+      } else {
+        modal.classList.remove("open");
+      }
+    }
+
+    // 9. Delivery Pin Code checker
+    function checkDeliveryPINCode() {
+      const input = document.getElementById("pincode-input-field");
+      const result = document.getElementById("pincode-result-msg");
+      if (!input || !result) return;
+
+      const pin = input.value.trim();
+
+      if (pin.length === 6 && /^\d+$/.test(pin)) {
+        // Calculate dynamic delivery date (current date + 4 business days)
+        const date = new Date();
+        date.setDate(date.getDate() + 4);
+        const options = { weekday: 'long', month: 'short', day: 'numeric' };
+        const deliveryDateStr = date.toLocaleDateString('en-IN', options);
+
+        result.style.color = "var(--color-success)";
+        result.innerHTML = `&#10004; Delivering to <strong>${pin}</strong>. Estimated delivery: <strong>${deliveryDateStr}</strong> (Express Shipping Available)`;
+      } else {
+        result.style.color = "var(--color-error)";
+        result.textContent = "Please enter a valid 6-digit PIN code.";
+      }
+
+      result.style.display = "block";
+    }
+
+    // 10. Buy Now Action redirect
+    function triggerBuyNow() {
+      if (!activeProductObj) return;
+      const qtyInput = document.getElementById("product-qty-input");
+      const qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+
+      if (typeof addToCart === "function") {
+        addToCart(activeProductObj.id, activeSelectedSize, qty, activeSelectedColor);
+      }
+
+      // Navigate immediately to checkout
+      setTimeout(() => {
+        window.location.href = "checkout.html";
+      }, 500);
+    }
+
+    // 11. Add to Cart from main details
+    function triggerAddToCartPage() {
+      if (!activeProductObj) return;
+      const qtyInput = document.getElementById("product-qty-input");
+      const qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+
+      if (typeof addToCartAndRedirect === "function") {
+        addToCartAndRedirect(activeProductObj.id, activeSelectedSize, qty, activeSelectedColor);
+      } else if (typeof addToCart === "function") {
+        addToCart(activeProductObj.id, activeSelectedSize, qty, activeSelectedColor);
+        window.location.href = "cart.html";
+      } else {
+        window.location.href = "cart.html";
+      }
+    }
+
+    // 12. Accordions click
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector("span");
+
+      if (content.classList.contains("open")) {
+        content.classList.remove("open");
+        if (icon) icon.textContent = "+";
+      } else {
+        content.classList.add("open");
+        if (icon) icon.textContent = "-";
+      }
+    }
+
+    // 13. Frequently bought together recommendation upsells
+    function loadBoughtTogetherBundle(product) {
+      const container = document.getElementById("frequently-bought-together-section");
+      if (!container) return;
+
+      // Recommended item: ID + 1 (wrap around within 24 sample products)
+      let recId = product.id + 1;
+      if (recId > 24) recId = 1;
+
+      const recProd = getProductById(recId);
+      if (!recProd) return;
+
+      const totalBundlePrice = product.price + recProd.price;
+
+      container.innerHTML = `
+        <div class="bought-together-container">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-maroon-dark); border-bottom: 1px solid var(--color-gray-light); padding-bottom: 0.5rem; margin-bottom: 1.25rem;">Frequently Bought Together</h3>
+          
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <div class="bundle-images">
+                <img src="${product.images[0]}" alt="${product.name}" style="width: 70px; height: 95px; object-fit: cover; border-radius: var(--border-radius-xs); border: 1px solid var(--color-gray-light);">
+                <span class="bundle-plus">+</span>
+                <img src="${recProd.images[0]}" alt="${recProd.name}" style="width: 70px; height: 95px; object-fit: cover; border-radius: var(--border-radius-xs); border: 1px solid var(--color-gray-light);">
+              </div>
+              
+              <div style="flex: 1; min-width: 260px; text-align: left;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" id="bundle-chk-main" checked onchange="updateBundleTotal(${product.price}, ${recProd.price})" style="accent-color: var(--color-maroon);"> <strong>This Item:</strong> ${product.name} (${formatCurrency(product.price)})
+                </label>
+                <label style="display: block; font-size: 0.9rem; cursor: pointer;">
+                  <input type="checkbox" id="bundle-chk-rec" checked onchange="updateBundleTotal(${product.price}, ${recProd.price})" style="accent-color: var(--color-maroon);"> <strong>Matching Suit:</strong> ${recProd.name} (${formatCurrency(recProd.price)})
+                </label>
+              </div>
+
+              <div style="text-align: right; min-width: 150px;">
+                <div style="font-size: 0.9rem; color: var(--color-gray); margin-bottom: 0.25rem;">Total Bundle Price:</div>
+                <strong id="bundle-total-price-val" style="font-size: 1.35rem; color: var(--color-maroon); display: block; margin-bottom: 0.5rem;">${formatCurrency(totalBundlePrice)}</strong>
+                <button class="btn btn-primary btn-sm" onclick="addBundleToCart(${product.id}, ${recProd.id})">Add Both to Bag</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateBundleTotal(mainPrice, recPrice) {
+      const chkMain = document.getElementById("bundle-chk-main");
+      const chkRec = document.getElementById("bundle-chk-rec");
+      const totalVal = document.getElementById("bundle-total-price-val");
+
+      let sum = 0;
+      if (chkMain && chkMain.checked) sum += mainPrice;
+      if (chkRec && chkRec.checked) sum += recPrice;
+
+      if (totalVal) {
+        totalVal.textContent = formatCurrency(sum);
+      }
+    }
+
+    function addBundleToCart(mainId, recId) {
+      const chkMain = document.getElementById("bundle-chk-main");
+      const chkRec = document.getElementById("bundle-chk-rec");
+
+      let itemsAdded = 0;
+      if (chkMain && chkMain.checked) {
+        addToCart(mainId, activeSelectedSize, 1, activeSelectedColor);
+        itemsAdded++;
+      }
+      if (chkRec && chkRec.checked) {
+        // Find default details of matching item
+        const recProd = getProductById(recId);
+        const recColor = recProd.colors && recProd.colors.length > 0 ? recProd.colors[0] : "Default";
+        addToCart(recId, "M", 1, recColor);
+        itemsAdded++;
+      }
+
+      if (itemsAdded > 0) {
+        window.location.href = "cart.html";
+      }
+    }
+
+    // 14. Related products loader
+    function loadRelatedSuits(category, excludeId) {
+      const grid = document.getElementById("related-products-grid");
+      if (!grid) return;
+
+      const related = getRelatedProducts(category, excludeId, 4);
+
+      if (related.length === 0) {
+        grid.parentElement.style.display = "none";
+        return;
+      }
+
+      grid.innerHTML = related.map(prod => createProductCardHTML(prod)).join("");
+    }
+
+    // 15. Recently viewed shelf populations
+    function renderRecentlyViewedGrid(currentId) {
+      const section = document.getElementById("recently-viewed-section");
+      const grid = document.getElementById("grid-recently-viewed");
+      if (!section || !grid) return;
+
+      let viewedIds = JSON.parse(localStorage.getItem("royal_affair_recently_viewed")) || [];
+      // Filter out current active product ID
+      viewedIds = viewedIds.filter(id => id !== currentId);
+
+      if (viewedIds.length === 0) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
+      const productsList = viewedIds.map(id => getProductById(id)).filter(p => p !== null).slice(0, 4);
+      grid.innerHTML = productsList.map(prod => createProductCardHTML(prod)).join("");
+    }
+
+    // 16. Sticky mobile buy now row
+    function initStickyMobileBar(product) {
+      const bar = document.getElementById("mobile-sticky-buy-bar");
+      const barImg = document.getElementById("sticky-bar-img");
+      const barTitle = document.getElementById("sticky-bar-title");
+      const barPrice = document.getElementById("sticky-bar-price");
+      const barSelect = document.getElementById("sticky-bar-size-select");
+      const addBtn = document.getElementById("sticky-bar-add-btn");
+
+      if (!bar || !barImg || !barTitle || !barPrice || !barSelect || !addBtn) return;
+
+      // Populate details
+      barImg.src = product.images[0];
+      barTitle.textContent = product.name;
+      barPrice.textContent = formatCurrency(product.price);
+
+      // Populate sizing selectors
+      barSelect.innerHTML = product.sizes.map(sz => `
+        <option value="${sz}" ${sz === 'M' ? 'selected' : ''}>${sz}</option>
+      `).join("");
+
+      // Bind selectors sync
+      barSelect.addEventListener("change", (e) => {
+        activeSelectedSize = e.target.value;
+        // Sync with desktop size buttons
+        const sizeBtns = document.querySelectorAll(".prod-size-btn");
+        sizeBtns.forEach(btn => {
+          if (btn.getAttribute("data-size") === activeSelectedSize) {
+            selectProductPageSize(btn, activeSelectedSize);
+          }
+        });
+      });
+
+      // Bind button click
+      addBtn.addEventListener("click", () => {
+        if (typeof addToCartAndRedirect === "function") {
+          addToCartAndRedirect(product.id, activeSelectedSize, 1, activeSelectedColor);
+        } else if (typeof addToCart === "function") {
+          addToCart(product.id, activeSelectedSize, 1, activeSelectedColor);
+          window.location.href = "cart.html";
+        } else {
+          window.location.href = "cart.html";
+        }
+      });
+
+      // Track scroll position to display
+      window.addEventListener("scroll", () => {
+        if (window.innerWidth <= 768 && window.scrollY > 400) {
+          bar.classList.add("show");
+        } else {
+          bar.classList.remove("show");
+        }
+      });
+    }
+
+    // Copy Link button helper
+    function copyProductLinkClipboard() {
+      navigator.clipboard.writeText(window.location.href);
+      showToast("Suit URL link copied to clipboard!", "success");
+    }
+  </script>
+</body>
+
+</html>
+
+

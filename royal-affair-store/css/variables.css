@@ -1,0 +1,86 @@
+/* Variables & Design Tokens for Royal Affair - Designer Suits */
+:root {
+  /* --- Fonts --- */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+
+  /* --- Brand Color Palette --- */
+  --color-ivory: #FFF9F1;
+  --color-ivory-light: #FFFCF7;
+  --color-ivory-dark: #F7EFE3;
+  
+  --color-beige: #F3E8D8;
+  --color-beige-dark: #E4D5BE;
+  
+  --color-maroon: #6B1F2A;
+  --color-maroon-light: #8E2F3C;
+  --color-maroon-dark: #49121A;
+  --color-maroon-alpha: rgba(107, 31, 42, 0.08);
+  
+  --color-plum: #4A1835;
+  --color-plum-light: #6A2850;
+  --color-plum-dark: #320E22;
+  
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-dark: #AA7C11;
+  --color-gold-alpha: rgba(212, 175, 55, 0.15);
+  
+  --color-charcoal: #242124;
+  --color-charcoal-light: #3D393D;
+  --color-charcoal-dark: #121012;
+  
+  --color-white: #FFFFFF;
+  --color-gray-dark: #666266;
+  --color-gray: #8F8B8F;
+  --color-gray-light: #EFECE6;
+  
+  --color-success: #2E7D32;
+  --color-success-light: #E8F5E9;
+  --color-error: #C62828;
+  --color-error-light: #FFEBEE;
+
+  /* --- Fluid Typography (clamp-based) --- */
+  --font-xs: clamp(0.7rem, 0.66rem + 0.18vw, 0.8rem);
+  --font-sm: clamp(0.8rem, 0.76rem + 0.18vw, 0.9rem);
+  --font-base: clamp(0.9rem, 0.86rem + 0.18vw, 1rem);
+  --font-md: clamp(1.05rem, 0.96rem + 0.36vw, 1.2rem);
+  --font-lg: clamp(1.2rem, 1.11rem + 0.45vw, 1.45rem);
+  --font-xl: clamp(1.45rem, 1.34rem + 0.54vw, 1.75rem);
+  --font-xxl: clamp(1.85rem, 1.71rem + 0.72vw, 2.35rem);
+  --font-xxxl: clamp(2.4rem, 2.18rem + 1.08vw, 3.15rem);
+  --font-display: clamp(3rem, 2.55rem + 2.25vw, 4.8rem);
+
+  /* --- Fluid Layout Spacing --- */
+  --spacing-xs: clamp(0.25rem, 0.23rem + 0.09vw, 0.35rem);
+  --spacing-sm: clamp(0.5rem, 0.45rem + 0.27vw, 0.65rem);
+  --spacing-md: clamp(1rem, 0.9rem + 0.45vw, 1.25rem);
+  --spacing-lg: clamp(1.5rem, 1.36rem + 0.68vw, 1.95rem);
+  --spacing-xl: clamp(2.25rem, 1.98rem + 1.36vw, 3.25rem);
+  --spacing-xxl: clamp(3.5rem, 3.1rem + 2.05vw, 5rem);
+  --spacing-xxxl: clamp(5rem, 4.3rem + 3.5vw, 7.5rem);
+
+  /* --- Structural Details --- */
+  --container-max-width: 1280px;
+  
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+  
+  --header-height: 80px;
+  
+  /* --- Transitions --- */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 2px 6px rgba(36, 33, 36, 0.05);
+  --shadow-md: 0 8px 20px rgba(36, 33, 36, 0.07);
+  --shadow-lg: 0 16px 36px rgba(74, 24, 53, 0.11);
+  --shadow-gold: 0 4px 15px rgba(194, 155, 85, 0.15);
+  --shadow-inset: inset 0 2px 4px rgba(36, 33, 36, 0.04);
+}

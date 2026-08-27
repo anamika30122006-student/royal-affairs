@@ -10,7 +10,17 @@ security = HTTPBearer()
 
 def get_db() -> Generator[Database, None, None]:
     """FastAPI dependency injection provider for PyMongo Database instance."""
+    from app.database import connect_to_mongo, database_state
     db = get_database()
+    if db is None or not database_state.get("connected"):
+        connect_to_mongo()
+        db = get_database()
+
+    if db is None:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Database connection is currently unavailable."
+        )
     try:
         yield db
     finally:
@@ -71,10 +81,10 @@ def get_current_user(
 def get_current_admin(
     current_user: dict = Depends(get_current_user)
 ) -> dict:
-    """Dependency to ensure current authenticated user has 'admin' role."""
-    if current_user.get("role") != "admin":
+    """Dependency to ensure current authenticated user has 'admin' or 'super_admin' role."""
+    if current_user.get("role") not in ("admin", "super_admin"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Access forbidden: Admin privilege required."
+            detail="Access forbidden: Admin or Super Admin privilege required."
         )
     return current_user

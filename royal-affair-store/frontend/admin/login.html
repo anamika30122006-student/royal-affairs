@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login – Royal Affair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1E1E1E 0%, #380A12 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .login-card {
+      background-color: #FFFFFF;
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-brand h1 {
+      font-size: 1.75rem;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .login-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .error-box {
+      background-color: var(--status-danger-bg);
+      color: var(--status-danger-text);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      display: none;
+      border-left: 4px solid #DC2626;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-card">
+    <div class="login-brand" style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="../assets/logo/logo.png" alt="The Royal Affair Logo"
+        style="width: 84px; height: 84px; border-radius: 50%; border: 2px solid var(--accent-gold); background: #FFFFFF; object-fit: cover; margin-bottom: 0.75rem; box-shadow: 0 4px 12px rgba(212,175,55,0.25);">
+      <h1 style="font-size: 1.6rem; color: var(--primary); font-weight: 700; letter-spacing: 1px; margin: 0;">THE ROYAL
+        AFFAIR</h1>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; font-style: italic;">wrap yourself in
+        elegance....</p>
+    </div>
+
+    <div id="login-error" class="error-box"></div>
+
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label for="login-email">Admin Email</label>
+        <input type="email" id="login-email" class="form-control" placeholder="admin@royalaffair.in" required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••••••••" required>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+        <label
+          style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-muted);">
+          <input type="checkbox" id="toggle-password"> Show Password
+        </label>
+      </div>
+
+      <button type="submit" id="login-btn" class="btn btn-primary" style="width: 100%; padding: 0.75rem;">
+        Sign In to Portal
+      </button>
+    </form>
+  </div>
+
+  <script src="js/admin-config.js"></script>
+  <script src="js/admin-api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Clear token if visiting login page
+      localStorage.removeItem(ADMIN_CONFIG.TOKEN_KEY);
+      localStorage.removeItem(ADMIN_CONFIG.USER_KEY);
+
+      const form = document.getElementById('login-form');
+      const togglePassword = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('login-password');
+      const errorBox = document.getElementById('login-error');
+      const loginBtn = document.getElementById('login-btn');
+
+      togglePassword.addEventListener('change', () => {
+        passwordInput.type = togglePassword.checked ? 'text' : 'password';
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBox.style.display = 'none';
+        loginBtn.disabled = true;
+        loginBtn.innerText = 'Authenticating...';
+
+        const email = document.getElementById('login-email').value.trim();
+        const password = passwordInput.value;
+
+        try {
+          const res = await fetch(`${ADMIN_CONFIG.API_BASE_URL}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.detail || 'Invalid email or password');
+          }
+
+          if (!data.user || (data.user.role !== 'admin' && data.user.role !== 'super_admin')) {
+            throw new Error('Admin access required. Your account lacks administrative privileges.');
+          }
+
+          // Save access token temporarily for dev
+          localStorage.setItem(ADMIN_CONFIG.TOKEN_KEY, data.access_token);
+          localStorage.setItem(ADMIN_CONFIG.USER_KEY, JSON.stringify(data.user));
+
+          showToast('Login successful. Redirecting...', 'success');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 800);
+
+        } catch (err) {
+          errorBox.innerText = err.message || 'Failed to authenticate.';
+          errorBox.style.display = 'block';
+        } finally {
+          loginBtn.disabled = false;
+          loginBtn.innerText = 'Sign In to Portal';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 import logging
 import re
-from pymongo import MongoClient, ASCENDING
+from pymongo import MongoClient, ASCENDING, DESCENDING, TEXT
 from pymongo.database import Database
 from pymongo.errors import PyMongoError
 from app.config import settings
@@ -17,6 +17,7 @@ REQUIRED_COLLECTIONS = [
     "wishlist",
     "reviews",
     "coupons",
+    "enquiries",
     "admin_logs"
 ]
 
@@ -26,31 +27,45 @@ def sanitize_url(url: str) -> str:
         return ""
     return re.sub(r'mongodb(\+srv)?://([^:]+):([^@]+)@', r'mongodb\1://\2:****@', url)
 
-# 1. ONE global MongoClient instance
+# Global MongoClient instance and shared database state
 client: MongoClient = None
 db: Database = None
 
-# 2. Shared mutable dictionary for database connection state
 database_state = {
     "connected": False
 }
 
 def create_indexes(database_instance: Database) -> None:
-    """Create required unique and sparse indexes for collections."""
+    """Create required unique, compound, and text indexes for collections."""
     try:
         # 1. Users Indexes
-        database_instance.users.create_index([("email", ASCENDING)], unique=True, name="uniq_users_email")
-        database_instance.users.create_index([("phone", ASCENDING)], unique=True, sparse=True, name="uniq_users_phone")
+        try:
+            indexes = database_instance.users.index_information()
+            if "uniq_users_phone" in indexes:
+                if not indexes["uniq_users_phone"].get("sparse"):
+                    database_instance.users.drop_index("uniq_users_phone")
+            database_instance.users.create_index([("email", ASCENDING)], unique=True, name="uniq_users_email")
+            database_instance.users.create_index([("phone", ASCENDING)], unique=True, sparse=True, name="uniq_users_phone")
+        except Exception as ie:
+            logger.warning(f"Notice on user phone index setup: {ie}")
 
-        # 2. Products Indexes
+        # 2. Categories Indexes
+        database_instance.categories.create_index([("slug", ASCENDING)], unique=True, name="uniq_categories_slug")
+
+        # 3. Products Indexes
         database_instance.products.create_index([("slug", ASCENDING)], unique=True, name="uniq_products_slug")
         database_instance.products.create_index([("sku", ASCENDING)], unique=True, name="uniq_products_sku")
+        database_instance.products.create_index([("category_id", ASCENDING)], name="idx_products_category_id")
+        database_instance.products.create_index([("created_at", DESCENDING)], name="idx_products_created_at")
+        database_instance.products.create_index([("name", TEXT), ("description", TEXT), ("brand", TEXT)], name="idx_products_text_search")
 
-        # 3. Orders Index
+        # 4. Orders Index
         database_instance.orders.create_index([("order_number", ASCENDING)], unique=True, name="uniq_orders_order_number")
 
-        # 4. Coupons Index
+        # 5. Coupons Index
         database_instance.coupons.create_index([("code", ASCENDING)], unique=True, name="uniq_coupons_code")
+        database_instance.reviews.create_index([("created_at", DESCENDING)], name="idx_reviews_created_at")
+        database_instance.enquiries.create_index([("created_at", DESCENDING)], name="idx_enquiries_created_at")
 
         logger.info("Database indexes created/verified successfully.")
     except Exception as e:
@@ -71,7 +86,6 @@ def connect_to_mongo() -> None:
         # Verify connection using ping command
         ping_res = client.admin.command("ping")
         if ping_res.get("ok") in (1, 1.0):
-            # 3. Update connection state dictionary
             database_state["connected"] = True
             logger.info(f"Connected to MongoDB successfully at {safe_url} (Database: {settings.MONGODB_DATABASE})")
 
@@ -109,7 +123,6 @@ def close_mongo_connection() -> None:
             client = None
             db = None
 
-# 4. Function to get string status from database_state dictionary
 def get_database_status() -> str:
     return "connected" if database_state["connected"] else "disconnected"
 

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Collections | Royal Affair – Designer Suits</title>
+  <meta name="description" content="Browse our luxury catalog of premium Indian designer suits. Filter by velvet Anarkalis, silk shararas, or georgette palazzos. Custom tailoring options.">
+  
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    Complimentary Shipping Across India on Orders Above ₹10,000 | Custom Tailoring Available
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="index.html" class="logo">
+        Royal Affair
+        <span>Designer Suits</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop Collection</a>
+        <a href="about.html" class="nav-link">Heritage</a>
+        <a href="faq.html" class="nav-link">FAQs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="account.html" class="nav-link">Account</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <a href="account.html" class="action-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+
+        <a href="wishlist.html" class="action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge-count wishlist-badge">0</span>
+        </a>
+
+        <a href="cart.html" class="action-btn cart-trigger" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-count cart-badge">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header / Breadcrumb -->
+  <div style="background-color: var(--color-white); border-bottom: 1px solid var(--color-gray-light);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"></span>
+        <span class="current">Shop Collection</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: var(--spacing-lg);">
+    <h1 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-maroon-dark); text-align: center; margin-bottom: 0.5rem; line-height: 1.2;">Designer Suits Collection</h1>
+    <p style="text-align: center; color: var(--color-charcoal-light); font-size: var(--font-sm); max-width: 600px; margin: 0 auto var(--spacing-lg); line-height: 1.6;">Browse our exquisite ethnic wear collection. Experience premium silk velvets, luxury Pakistani designer suits, and custom tailored wedding ensembles.</p>
+  </div>
+
+  <!-- Shop Main Content -->
+  <section class="section-padding container" style="padding-top: 0;">
+    <div class="shop-layout-grid" style="display: grid; grid-template-columns: 280px 1fr; gap: var(--spacing-xl);">
+      
+      <!-- Left Sidebar Filters (Desktop) -->
+      <aside class="desktop-filters-sidebar" style="background-color: var(--color-white); padding: var(--spacing-md); border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs); height: fit-content; box-shadow: var(--shadow-sm);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--color-maroon); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--color-maroon-dark); margin: 0;">Filters</h3>
+          <button class="clear-filters-btn" onclick="clearAllCatalogFilters()" style="background: none; border: none; font-size: 0.75rem; font-weight: 600; color: var(--color-gold-dark); cursor: pointer; text-transform: uppercase;">Clear All</button>
+        </div>
+
+        <!-- Category Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Collections</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label class="filter-checkbox-label" style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-category" value="All" checked onclick="setFilterCategory('All')" style="accent-color: var(--color-maroon);"> All Collections
+            </label>
+            <label class="filter-checkbox-label" style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-category" value="Anarkali" onclick="setFilterCategory('Anarkali')" style="accent-color: var(--color-maroon);"> Anarkali Suits
+            </label>
+            <label class="filter-checkbox-label" style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-category" value="Salwar Kameez" onclick="setFilterCategory('Salwar Kameez')" style="accent-color: var(--color-maroon);"> Salwar Kameez
+            </label>
+            <label class="filter-checkbox-label" style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-category" value="Sharara Set" onclick="setFilterCategory('Sharara Set')" style="accent-color: var(--color-maroon);"> Sharara Sets
+            </label>
+            <label class="filter-checkbox-label" style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-category" value="Palazzo Suit" onclick="setFilterCategory('Palazzo Suit')" style="accent-color: var(--color-maroon);"> Palazzo Suits
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Price Ceiling</h4>
+          <input type="range" class="price-slider-input" min="1499" max="12999" step="500" value="12999" oninput="setFilterPrice(this.value)" style="width: 100%; accent-color: var(--color-maroon);">
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--color-gray); margin-top: 0.25rem;">
+            <span>₹1,499</span>
+            <span class="ceiling-price-val" style="color: var(--color-maroon); font-weight: 600;">₹12,999</span>
+          </div>
+        </div>
+
+        <!-- Size Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Available Sizes</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+            <button class="filter-size-btn" data-size="S" onclick="toggleFilterSize(this, 'S')" style="width: 34px; height: 34px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--color-gray-light); background-color: var(--color-white); border-radius: var(--border-radius-xs); cursor: pointer; transition: all var(--transition-fast);">S</button>
+            <button class="filter-size-btn" data-size="M" onclick="toggleFilterSize(this, 'M')" style="width: 34px; height: 34px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--color-gray-light); background-color: var(--color-white); border-radius: var(--border-radius-xs); cursor: pointer; transition: all var(--transition-fast);">M</button>
+            <button class="filter-size-btn" data-size="L" onclick="toggleFilterSize(this, 'L')" style="width: 34px; height: 34px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--color-gray-light); background-color: var(--color-white); border-radius: var(--border-radius-xs); cursor: pointer; transition: all var(--transition-fast);">L</button>
+            <button class="filter-size-btn" data-size="XL" onclick="toggleFilterSize(this, 'XL')" style="width: 34px; height: 34px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--color-gray-light); background-color: var(--color-white); border-radius: var(--border-radius-xs); cursor: pointer; transition: all var(--transition-fast);">XL</button>
+            <button class="filter-size-btn" data-size="XXL" onclick="toggleFilterSize(this, 'XXL')" style="width: 34px; height: 34px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--color-gray-light); background-color: var(--color-white); border-radius: var(--border-radius-xs); cursor: pointer; transition: all var(--transition-fast);">XXL</button>
+          </div>
+        </div>
+
+        <!-- Color Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Color Palette</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+            <span class="filter-color-tag" data-color="Ivory" onclick="toggleFilterColor(this, 'Ivory')" title="Ivory" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #FFF9F1; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Beige" onclick="toggleFilterColor(this, 'Beige')" title="Beige" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #F3E8D8; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Maroon" onclick="toggleFilterColor(this, 'Maroon')" title="Maroon" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #6B1F2A; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Plum" onclick="toggleFilterColor(this, 'Plum')" title="Plum" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #4A1835; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Gold" onclick="toggleFilterColor(this, 'Gold')" title="Gold" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #C29B55; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Peach" onclick="toggleFilterColor(this, 'Peach')" title="Peach" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #FFDAB9; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+            <span class="filter-color-tag" data-color="Soft Pink" onclick="toggleFilterColor(this, 'Soft Pink')" title="Soft Pink" style="display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #FFB6C1; border: 2px solid rgba(36,33,36,0.15); cursor: pointer; transition: all var(--transition-fast);"></span>
+          </div>
+        </div>
+
+        <!-- Fabric Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Premium Fabrics</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Silk" onclick="toggleFilterFabric('Silk')" style="accent-color: var(--color-maroon);"> Silk Weaves
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Velvet" onclick="toggleFilterFabric('Velvet')" style="accent-color: var(--color-maroon);"> Handloom Velvet
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Organza" onclick="toggleFilterFabric('Organza')" style="accent-color: var(--color-maroon);"> Pure Organza
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Cotton Lawn" onclick="toggleFilterFabric('Cotton Lawn')" style="accent-color: var(--color-maroon);"> Cotton Lawn
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Georgette" onclick="toggleFilterFabric('Georgette')" style="accent-color: var(--color-maroon);"> Luxury Georgette
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-fabric-chk" value="Chanderi" onclick="toggleFilterFabric('Chanderi')" style="accent-color: var(--color-maroon);"> Festive Chanderi
+            </label>
+          </div>
+        </div>
+
+        <!-- Occasion Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Ideal Occasion</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-occasion-chk" value="Festive Collection" onclick="toggleFilterOccasion('Festive Collection')" style="accent-color: var(--color-maroon);"> Festive Celebrations
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-occasion-chk" value="Wedding Couture" onclick="toggleFilterOccasion('Wedding Couture')" style="accent-color: var(--color-maroon);"> Wedding Couture
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" class="filter-occasion-chk" value="Luxury Lawn" onclick="toggleFilterOccasion('Luxury Lawn')" style="accent-color: var(--color-maroon);"> Casual & Day Wear
+            </label>
+          </div>
+        </div>
+
+        <!-- Availability Filter -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Availability</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-avail" value="all" checked onclick="setFilterAvail('all')" style="accent-color: var(--color-maroon);"> Show All Items
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-avail" value="in-stock" onclick="setFilterAvail('in-stock')" style="accent-color: var(--color-maroon);"> In Stock Only
+            </label>
+          </div>
+        </div>
+
+        <!-- Discount Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Promo Offers</h4>
+          <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="filter-discount-chk" onclick="toggleFilterDiscount(this.checked)" style="accent-color: var(--color-maroon);"> Discounted & Sale Items
+          </label>
+        </div>
+
+        <!-- Rating Filter Section -->
+        <div class="filter-group" style="margin-bottom: 1.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+          <h4 style="font-family: var(--font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.75rem;">Customer Rating</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-rating" value="0" checked onclick="setFilterRating(0)" style="accent-color: var(--color-maroon);"> All Ratings
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-rating" value="4.0" onclick="setFilterRating(4.0)" style="accent-color: var(--color-maroon);"> 4.0 ★ & Above
+            </label>
+            <label style="font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="filter-rating" value="4.5" onclick="setFilterRating(4.5)" style="accent-color: var(--color-maroon);"> 4.5 ★ & Above
+            </label>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Right Main Catalog Content -->
+      <div>
+        
+        <!-- Toolbar Controls -->
+        <div class="shop-toolbar" style="display: flex; flex-direction: column; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); border-bottom: 1px solid var(--color-gray-light); padding-bottom: var(--spacing-md);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md);">
+            <!-- Left product count / search results messages -->
+            <div>
+              <span id="catalog-count" style="font-size: 0.95rem; color: var(--color-gray); font-weight: 500;">0 suits found</span>
+              <div id="search-info-message" style="display: none; font-size: 0.85rem; color: var(--color-gold-dark); margin-top: 2px; font-weight: 500;"></div>
+            </div>
+
+            <!-- Layout columns grid list switches & sorting select -->
+            <div style="display: flex; align-items: center; gap: var(--spacing-md); flex-wrap: wrap;">
+              
+              <!-- Layout views switchers -->
+              <div class="layout-controls" style="display: flex; align-items: center; gap: 0.35rem;">
+                <button class="layout-btn active" id="layout-grid-btn" onclick="setCatalogLayout('grid')" title="Grid View" style="background: none; border: 1px solid var(--color-gray-light); width: 34px; height: 34px; border-radius: var(--border-radius-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--color-charcoal); transition: all var(--transition-fast);">
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </button>
+                <button class="layout-btn" id="layout-list-btn" onclick="setCatalogLayout('list')" title="List View" style="background: none; border: 1px solid var(--color-gray-light); width: 34px; height: 34px; border-radius: var(--border-radius-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--color-charcoal); transition: all var(--transition-fast);">
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </button>
+
+                <!-- Column select buttons (Desktop grid view only) -->
+                <div class="column-selectors" id="column-selectors-block" style="display: flex; gap: 0.2rem; margin-left: 0.5rem;">
+                  <button class="col-select-btn" data-cols="2" onclick="setCatalogColumns(2)" style="background: var(--color-white); border: 1px solid var(--color-gray-light); padding: 0.25rem 0.5rem; font-size: 0.75rem; border-radius: var(--border-radius-xs); font-weight: 600; cursor: pointer; transition: all var(--transition-fast);">2 Col</button>
+                  <button class="col-select-btn active" id="col-btn-3" data-cols="3" onclick="setCatalogColumns(3)" style="background: var(--color-maroon); color: var(--color-ivory); border: 1px solid var(--color-maroon); padding: 0.25rem 0.5rem; font-size: 0.75rem; border-radius: var(--border-radius-xs); font-weight: 600; cursor: pointer; transition: all var(--transition-fast);">3 Col</button>
+                  <button class="col-select-btn" data-cols="4" onclick="setCatalogColumns(4)" style="background: var(--color-white); border: 1px solid var(--color-gray-light); padding: 0.25rem 0.5rem; font-size: 0.75rem; border-radius: var(--border-radius-xs); font-weight: 600; cursor: pointer; transition: all var(--transition-fast);">4 Col</button>
+                </div>
+              </div>
+
+              <!-- Sorting panel -->
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="catalog-sort" style="font-size: 0.85rem; color: var(--color-gray); font-weight: 500;">Sort By:</label>
+                <select id="catalog-sort" onchange="setCatalogSort(this.value)" class="form-select" style="padding: 0.4rem 2rem 0.4rem 0.85rem; width: auto; font-size: 0.85rem; background-color: var(--color-white); border: 1px solid var(--color-gray-light); border-radius: var(--border-radius-xs);">
+                  <option value="featured">Featured Designs</option>
+                  <option value="newest">Newest Arrivals</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Top Customer Rated</option>
+                  <option value="discount">Biggest Discount</option>
+                </select>
+              </div>
+
+              <!-- Mobile filter trigger button -->
+              <button class="btn btn-outline btn-sm" id="mobile-filter-drawer-open" onclick="openMobileFilterDrawer()" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+                Filters
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Active Filter Chips -->
+          <div id="active-filter-chips-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+            <!-- Rendered dynamically by filters.js -->
+          </div>
+        </div>
+
+        <!-- Catalog Items Grid -->
+        <div id="products-catalog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--spacing-lg); transition: all 0.3s ease;">
+          <!-- Populated dynamically by filters.js -->
+        </div>
+
+        <!-- Load More Section -->
+        <div id="load-more-container" style="text-align: center; margin-top: var(--spacing-xl); display: none;">
+          <button class="btn btn-primary" id="load-more-btn" onclick="triggerLoadMoreCatalog()" style="padding: var(--spacing-md) var(--spacing-xl);">Load More Products</button>
+        </div>
+
+        <!-- Pagination Pager Controls -->
+        <div class="pagination-container" id="catalog-pagination-row">
+          <!-- Rendered dynamically by filters.js -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Mobile Filter Drawer -->
+  <div class="mobile-filter-overlay" id="mobile-filter-backdrop-overlay" onclick="closeMobileFilterDrawer()"></div>
+  <div class="mobile-filter-drawer" id="mobile-filter-drawer-panel">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--color-maroon); padding-bottom: 0.75rem; margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-maroon-dark); margin: 0;">Filters</h3>
+      <button onclick="closeMobileFilterDrawer()" style="background: none; border: none; font-size: 1.75rem; cursor: pointer; color: var(--color-charcoal); line-height: 1;">&times;</button>
+    </div>
+    
+    <div id="mobile-filters-placeholder-content">
+      <!-- Sidebar contents cloned here on mobile display by filters.js -->
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; gap: 0.5rem; border-top: 1px solid var(--color-gray-light); padding-top: 1rem;">
+      <button class="btn btn-outline btn-sm" onclick="clearAllCatalogFilters(); closeMobileFilterDrawer();" style="flex: 1;">Clear All</button>
+      <button class="btn btn-primary btn-sm" onclick="closeMobileFilterDrawer()" style="flex: 1;">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo" style="color: var(--color-gold-light); margin-bottom: 1rem;">
+            Royal Affair
+          </a>
+          <p>Handcrafting the finest Indian designer suits. Experience premium silk velvets, luxury Banarasi weaves, and intricate hand-embellished wear.</p>
+          <div class="social-icons">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5-1.5c.3-1.8 1.4-5.2 2-7.5-.2-.5-.3-1.2-.3-1.9 0-2.6 1.5-4.5 3.3-4.5.9 0 1.7.4 2 1.1.8-1.5 2.1-2.1 3.5-2.1 3.1 0 5.4 2.8 5.4 6.7 0 4.2-2.5 7.2-5.4 7.2-1 0-1.9-.5-2.2-1.1-.9 2.5-1 3.3-1.6 4.7z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="shop.html">Shop Collection</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="order-tracking.html">Track Order</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Customer Care</h3>
+          <ul class="footer-links">
+            <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Join The Royal Circle</h3>
+          <p>Subscribe to receive previews of new collections, editorial styling tips, and private sales.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed to the newsletter.'); this.reset();">
+            <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Royal Affair. All rights reserved. Elegant designer suits for the contemporary wardrobe.</p>
+        <div class="payment-methods" style="color: var(--color-gold-light); display: flex; align-items: center; gap: 0.5rem;">
+          <span>Visa | MasterCard | UPI | Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay-container">
+    <button class="search-close-btn" aria-label="Close search">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <h2 style="font-size: 2rem; color: var(--color-maroon-dark); font-family: var(--font-heading); text-align: center;">Search our Collections</h2>
+    <div class="search-box-wrapper">
+      <input type="text" placeholder="Search by velvet, silk, anarkali..." class="search-input-field">
+      <button class="search-btn-field" aria-label="Submit search">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+    <div class="search-results-preview"></div>
+  </div>
+
+  <!-- Cart Drawer Sidebar -->
+  <div class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-heading);">Your Cart</h2>
+        <button class="cart-drawer-close" aria-label="Close cart">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="cart-drawer-body">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-drawer-subtotal">
+          <span>Subtotal</span>
+          <span id="drawer-subtotal-val">₹0</span>
+        </div>
+        <div class="cart-drawer-footer-actions">
+          <a href="cart.html" class="btn btn-outline" style="margin-bottom: 0.5rem; text-align: center;">View Entire Cart</a>
+          <a href="checkout.html" class="btn btn-primary" style="text-align: center;">Checkout Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="./js/config.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/products.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/wishlist.js"></script>
+  <script src="./js/compare.js"></script>
+  <script src="./js/search.js"></script>
+  <script src="./js/filters.js"></script>
+</body>
+</html>
+
+

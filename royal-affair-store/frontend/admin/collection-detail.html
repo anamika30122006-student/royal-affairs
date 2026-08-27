@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection – Manage Products</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="admin-wrapper">
+    <aside class="sidebar"> <!-- simplified: reuse same sidebar markup via include in production -->
+      <!-- Sidebar omitted for brevity in this page file; it's present in other admin pages. -->
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="sidebar-toggle-btn" class="toggle-btn" title="Toggle Sidebar">☰</button>
+          <h1 id="page-title" class="page-title">Collection</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="admin-profile">
+            <div id="topbar-admin-avatar" class="admin-avatar">RA</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-container">
+        <div class="card" id="collection-card">
+          <div style="display:flex; gap:1rem; align-items:center;">
+            <div id="collection-image" style="width:120px; height:120px; border-radius:8px; overflow:hidden; background:#f3f4f6;"></div>
+            <div style="flex:1;">
+              <h2 id="collection-name" style="margin:0;">Collection Name</h2>
+              <div id="collection-desc" style="color:var(--text-muted); margin-top:6px;">Description</div>
+              <div style="margin-top:8px; display:flex; gap:12px; align-items:center;">
+                <span id="collection-status" class="badge badge-secondary">Status</span>
+                <span id="collection-order" class="badge">Order</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button id="edit-collection-btn" class="btn btn-secondary" onclick="openCollectionModal()">Edit Collection</button>
+              <button id="delete-collection-btn" class="btn btn-danger">Delete Collection</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0;">Products in this Collection (<span id="products-count">0</span>)</h3>
+            <div style="display:flex; gap:8px;">
+              <button id="add-products-btn" class="btn btn-primary">Add Products</button>
+              <button id="save-order-btn" class="btn btn-secondary">Save Order</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="collection-products-table">
+              <thead>
+                <tr>
+                  <th style="width:64px">Image</th>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th style="width:140px; text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="collection-products-tbody">
+                <tr><td colspan="6" style="text-align:center; color:var(--text-muted);">Loading products...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Products Modal -->
+  <div id="add-products-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:720px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Products to Collection</h3>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeAddProductsModal()">&times;</button>
+      </div>
+      <div style="padding:1rem;">
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <input id="add-search" placeholder="Search products by name or SKU" style="flex:1; padding:6px; border:1px solid var(--border-color); border-radius:6px;" />
+          <select id="add-filter-stock" style="padding:6px; border:1px solid var(--border-color); border-radius:6px;">
+            <option value="">All</option>
+            <option value="instock">In stock</option>
+            <option value="outofstock">Out of stock</option>
+          </select>
+        </div>
+        <div id="add-products-list" style="max-height:340px; overflow:auto; display:flex; flex-direction:column; gap:6px;">
+          <div style="text-align:center; color:var(--text-muted);">Loading catalog...</div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
+          <button class="btn btn-secondary" onclick="closeAddProductsModal()">Cancel</button>
+          <button id="add-selected-btn" class="btn btn-primary">Add Selected</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin-config.js"></script>
+  <script src="js/admin-api.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/collections.js"></script>
+  <script src="js/collection-detail.js"></script>
+</body>
+
+</html>

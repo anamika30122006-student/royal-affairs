@@ -31,7 +31,10 @@ REVIEW_UPLOAD_DIR = Path(__file__).resolve().parent.parent.parent / "uploads" / 
 
 def ensure_upload_dir() -> None:
     """Create upload directory if it does not already exist."""
-    UPLOAD_BASE_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        UPLOAD_BASE_DIR.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        pass
 
 
 def _validate_extension(filename: str) -> str:

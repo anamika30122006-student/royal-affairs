@@ -23,9 +23,13 @@ from app.routes.engagement import public_router as engagement_public_router, adm
 # ---------------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent          # backend/
 UPLOADS_PRODUCTS_DIR = BASE_DIR / "uploads" / "products"
-UPLOADS_PRODUCTS_DIR.mkdir(parents=True, exist_ok=True)   # ensure exists at startup
 UPLOADS_REVIEWS_DIR = BASE_DIR / "uploads" / "reviews"
-UPLOADS_REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
+
+try:
+    UPLOADS_PRODUCTS_DIR.mkdir(parents=True, exist_ok=True)   # ensure exists at startup
+    UPLOADS_REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
+except OSError:
+    pass
 
 # ---------------------------------------------------------------------------
 # Lifespan (startup / shutdown)
@@ -72,19 +76,19 @@ app.add_middleware(
 # ---------------------------------------------------------------------------
 # Static files – serve uploaded product images
 # NOTE FOR PRODUCTION: Replace this with a CDN / cloud storage URL.
-#   Remove or disable this mount when deploying to production.
-#   Uploaded files should go to Cloudinary / Amazon S3 / Google GCS instead.
 # ---------------------------------------------------------------------------
-app.mount(
-    "/uploads/products",
-    StaticFiles(directory=str(UPLOADS_PRODUCTS_DIR)),
-    name="product_uploads",
-)
-app.mount(
-    "/uploads/reviews",
-    StaticFiles(directory=str(UPLOADS_REVIEWS_DIR)),
-    name="review_uploads",
-)
+if UPLOADS_PRODUCTS_DIR.exists():
+    app.mount(
+        "/uploads/products",
+        StaticFiles(directory=str(UPLOADS_PRODUCTS_DIR)),
+        name="product_uploads",
+    )
+if UPLOADS_REVIEWS_DIR.exists():
+    app.mount(
+        "/uploads/reviews",
+        StaticFiles(directory=str(UPLOADS_REVIEWS_DIR)),
+        name="review_uploads",
+    )
 
 # ---------------------------------------------------------------------------
 # API v1 Routers

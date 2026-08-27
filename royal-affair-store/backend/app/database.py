@@ -72,14 +72,23 @@ def create_indexes(database_instance: Database) -> None:
         logger.warning(f"Could not complete database index creation: {e}")
 
 def connect_to_mongo() -> None:
-    """Connect to MongoDB during application startup without crashing on failure."""
+    """Connect to MongoDB during application startup without crashing or timing out on serverless platforms."""
     global client, db
+    import os
     safe_url = sanitize_url(settings.MONGODB_URL)
+
+    is_vercel = bool(os.environ.get("VERCEL") or os.environ.get("VERCEL_ENV"))
+    if is_vercel and ("localhost" in settings.MONGODB_URL or "127.0.0.1" in settings.MONGODB_URL):
+        database_state["connected"] = False
+        logger.warning("Vercel environment detected with default localhost MONGODB_URL. Running in disconnected mode.")
+        return
+
     try:
+        timeout_ms = 2500 if is_vercel else 5000
         client = MongoClient(
             settings.MONGODB_URL,
-            serverSelectionTimeoutMS=10000,
-            connectTimeoutMS=10000
+            serverSelectionTimeoutMS=timeout_ms,
+            connectTimeoutMS=timeout_ms
         )
         db = client[settings.MONGODB_DATABASE]
 
@@ -89,18 +98,18 @@ def connect_to_mongo() -> None:
             database_state["connected"] = True
             logger.info(f"Connected to MongoDB successfully at {safe_url} (Database: {settings.MONGODB_DATABASE})")
 
-            # Automatically create missing collections
-            existing = db.list_collection_names()
-            for col in REQUIRED_COLLECTIONS:
-                if col not in existing:
-                    db.create_collection(col)
-                    logger.info(f"Created collection: {col}")
-
-            # Setup indexes
-            create_indexes(db)
+            # Automatically create missing collections & indexes safely
+            try:
+                existing = db.list_collection_names()
+                for col in REQUIRED_COLLECTIONS:
+                    if col not in existing:
+                        db.create_collection(col)
+                create_indexes(db)
+            except Exception as idx_err:
+                logger.warning(f"Notice on database collection/index setup: {idx_err}")
         else:
             database_state["connected"] = False
-            logger.warning(f"MongoDB ping response was not ok:1 ({ping_res})")
+            logger.warning(f"MongoDB ping response was not ok: ({ping_res})")
 
     except PyMongoError as pme:
         database_state["connected"] = False
